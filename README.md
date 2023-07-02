@@ -1,34 +1,34 @@
-## Tampilan
+# Tampilan
 
-# Menu Dashboard
-# Perencanaan
+## Menu Dashboard
+## Perencanaan
     - Project
     - RAB
     - Waktu Perencanaan
-# Laporan
+## Laporan
     - Laporan RAB
     - Waktu Perencanaan
-# Profil
+## Profil
 
-## Pengguna
+# Pengguna
 
     - Admin
     - Boss
 
-## TABEL
+# TABEL
 
-    # Tabel Project
+    ## Tabel Project
         - Merupakan input data project
         - Contoh
             - project Pembangunan Jalan
 
-    # Tabel Uraian
+    ## Tabel Uraian
         - Merupakan input Uraian atau Progress pekerjaan berdasarkan project pada halaman project
         - Contoh
             - Membuat Pondasi Jalan
             - Melakukan Aspal
 
-    # Tabel Rab
+    ## Tabel Rab
         - Merupakan inputan anggaran rincian dari masing masing progress
         - Contoh
             - Progress Membuat Pondasi jalan [
@@ -39,7 +39,7 @@
             ],
             - dll
 
-    # Tabel Durasi
+    ## Tabel Durasi
         - Merupakan input data waktu perencanaan berdasarkan RAB
         - Contoh
             - Lama waktu pengerjaan Membuat Pondasi Jalan => 10 Hari
