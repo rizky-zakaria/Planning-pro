@@ -1,14 +1,14 @@
 ## Tampilan
 
-    # Menu Dashboard
-    # Perencanaan
-        - Project
-        - RAB
-        - Waktu Perencanaan
-    # Laporan
-        - Laporan RAB
-        - Waktu Perencanaan
-    # Profil
+# Menu Dashboard
+# Perencanaan
+    - Project
+    - RAB
+    - Waktu Perencanaan
+# Laporan
+    - Laporan RAB
+    - Waktu Perencanaan
+# Profil
 
 ## Pengguna
 
