@@ -13,6 +13,7 @@
 
     <!-- Custom fonts for this template-->
     @include('layouts.dashboard.partials.style')
+    @stack('style')
 </head>
 
 <body id="page-top">
@@ -64,6 +65,7 @@
 
 
     @include('layouts.dashboard.partials.script')
+    @stack('script')
 
 </body>
 

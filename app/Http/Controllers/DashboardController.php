@@ -9,13 +9,11 @@ class DashboardController extends Controller
 {
     public function admin()
     {
-        $user = Auth::user();
-        return view('dashboard.admin.index', compact('user'));
+        return view('dashboard.admin.index');
     }
 
     public function bos()
     {
-        $user = Auth::user();
-        return view('dashboard.bos.index', compact('user'));
+        return view('dashboard.bos.index');
     }
 }

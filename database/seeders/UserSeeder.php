@@ -25,13 +25,21 @@ class UserSeeder extends Seeder
         // ]);
         $users = [
             [
-                'nama' => 'Admin Kantor',
+                'nama_depan' => 'Aslan',
+                'nama_belakang' => 'Onu',
+                'nomor_telepon' => '+62 895-4121-57788',
+                'alamat' => 'Limboto Kabupaten Gorontalo',
+                'nama_lengkap' => 'Aslan Onu',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('123'),
                 'role' => 'admin'
             ],
             [
-                'nama' => 'Pak Bos',
+                'nama_depan' => 'Nikma Sari',
+                'nama_belakang' => 'Pakaya',
+                'nomor_telepon' => '+62 813-5528-0700',
+                'alamat' => 'Jalan Prangkonero Kota Gorontalo',
+                'nama_lengkap' => 'Nikma Sari Pakaya',
                 'email' => 'bos@gmail.com',
                 'password' => Hash::make('123'),
                 'role' => 'bos'
@@ -39,8 +47,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            if (!User::where('nama', $user['nama'])->exists()) {
-                # code...
+            if (!User::where('email', $user['email'])->exists()) {
                 User::create($user);
             }
         }
