@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +16,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.templates');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::middleware(['guest'])->group(function () {
+    // Login
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'storeLogin']);
 });
 
-Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
+    // Middleware Admin
+    Route::group(['middleware' => ['role:admin'], 'prefix' => '/admin'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
+    });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Middleware Boss
+    Route::group(['middleware' => ['role:bos'], 'prefix' => '/bos'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'bos'])->name('bos.dashboard');
+    });
+
+    // LOGOUT
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
