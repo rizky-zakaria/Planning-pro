@@ -42,9 +42,17 @@ class ProyekController extends Controller
 
     public function show($id)
     {
+        $totalBiaya = 0;
+        $uraians = Uraian::all();
+        foreach ($uraians as $uraian) {
+            if ($uraian['total_biaya'] != null) {
+                $totalBiaya += $uraian['total_biaya'];
+            }
+        }
+
         $proyek = Proyek::findOrFail($id);
 
-        return view('dashboard.admin.proyek.detail', compact('proyek'));
+        return view('dashboard.admin.proyek.detail', compact('proyek', 'totalBiaya'));
     }
 
     public function update(Request $request, $id)
@@ -66,6 +74,46 @@ class ProyekController extends Controller
     {
         $proyek->delete();
         Alert::toast('Berhasil menghapus proyek dan lainnya', 'success');
+        return back();
+    }
+
+    // KODE UNTUK URAIAN
+    public function tambahUraian(Request $request, $id)
+    {
+        $proyek = Proyek::findOrFail($id);
+        $this->validate($request, [
+            'nama_uraian' => 'required',
+        ]);
+
+        $uraian = new Uraian();
+        $uraian->proyek_id = $proyek->id;
+        $uraian->nama_uraian = $request->nama_uraian;
+        $uraian->save();
+
+        Alert::toast('Berhasil tambah uraian', 'success');
+        return back();
+    }
+
+    public function ubahUraian(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nama_uraian' => 'required',
+        ]);
+
+        $uraian = Uraian::findOrFail($id);
+        $uraian->update([
+            'nama_uraian' => $request->nama_uraian,
+        ]);
+
+        Alert::toast('Berhasil ubah uraian', 'success');
+        return back();
+    }
+
+    public function hapusUraian($id)
+    {
+        $uraian = Uraian::findOrFail($id);
+        $uraian->delete();
+        Alert::toast('Berhasil hapus uraian', 'success');
         return back();
     }
 }

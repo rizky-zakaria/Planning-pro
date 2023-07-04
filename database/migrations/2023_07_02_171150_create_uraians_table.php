@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('proyek_id')->constrained()->onDelete('cascade');
             $table->string('nama_uraian');
+            $table->integer('total_biaya')->nullable();
             $table->timestamps();
         });
     }

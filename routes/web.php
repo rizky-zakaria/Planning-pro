@@ -33,6 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:admin'], 'prefix' => '/admin'], function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
         Route::resource('/proyek', ProyekController::class);
+        Route::post('/proyek/uraian/{id}', [ProyekController::class, 'tambahUraian'])->name('uraian.store');
+        Route::put('/proyek/uraian/edit/{id}', [ProyekController::class, 'ubahUraian'])->name('uraian.update');
+        Route::delete('/proyek/uraian/delete/{id}', [ProyekController::class, 'hapusUraian'])->name('uraian.destroy');
         Route::resource('/anggaran', AnggranController::class);
         Route::resource('/waktu_perencanaan', DurasiController::class);
     });
