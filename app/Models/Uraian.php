@@ -10,7 +10,7 @@ class Uraian extends Model
     use HasFactory;
 
     protected $fillable = [
-        'projek_id', 'nama_uraian'
+        'proyek_id', 'nama_uraian'
     ];
 
     public function projek()

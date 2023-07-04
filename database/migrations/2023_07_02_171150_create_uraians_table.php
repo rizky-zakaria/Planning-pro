@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('uraians', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('projek_id')->constrained()->onDelete('cascade');
+            $table->foreignId('proyek_id')->constrained()->onDelete('cascade');
             $table->string('nama_uraian');
             $table->timestamps();
         });
