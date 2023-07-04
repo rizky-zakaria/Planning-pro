@@ -92,7 +92,7 @@
 <div class="row">
 
     <!-- Area Chart -->
-    <div class="col-xl-7 col-lg-7">
+    <div class="col-xl-5 col-lg-7">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -104,17 +104,26 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th style="width: 20px">No</th>
                                 <th>Nama Proyek</th>
+                                <th>Dibuat</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>No</th>
                                 <th>Nama Proyek</th>
+                                <th>Dibuat</th>
                             </tr>
                         </tfoot>
                         <tbody>
+                            @foreach ($proyeks as $proyek)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $proyek->nama_proyek }}</td>
+                                <td>{{ $proyek->created_at }}</td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -123,7 +132,7 @@
     </div>
 
     <!-- Pie Chart -->
-    <div class="col-xl-5 col-lg-5">
+    <div class="col-xl-7 col-lg-5">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -135,17 +144,29 @@
                     <table class="table table-bordered" id="tableWaktuPerencanaan" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Nama Proyek</th>
+                                <th style="width: 20px">No</th>
+                                <th>Uraian Pekerjaan</th>
+                                <th>Waktu Perencanaan</th>
+                                <th>Dibuat</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Proyek</th>
+                                <th>Uraian Pekerjaan</th>
+                                <th>Waktu Perencanaan</th>
+                                <th>Dibuat</th>
                             </tr>
                         </tfoot>
                         <tbody>
+                            @foreach ($uraians as $uraian)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $uraian->nama_uraian }}</td>
+                                <td>{{ $uraian->durasi->hari ?? 'belum terinput'}}</td>
+                                <td>{{ $uraian->created_at }}</td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -154,7 +175,7 @@
     </div>
 
 </div>
-<div class="card shadow mb-4">
+{{-- <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Update Data Anggaran</h6>
@@ -167,20 +188,47 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Proyek</th>
+                        <th>Total Anggaran</th>
+                        <th>Uraian Pekerjaan</th>
+                        <th>Anggaran</th>
+                        <th>Item Pekerjaan</th>
+                        <th>Anggaran</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>No</th>
                         <th>Nama Proyek</th>
+                        <th>Total Anggaran</th>
+                        <th>Uraian Pekerjaan</th>
+                        <th>Anggaran</th>
+                        <th>Item Pekerjaan</th>
+                        <th>Anggaran</th>
                     </tr>
                 </tfoot>
                 <tbody>
+                    @foreach ($proyeks as $item => $proyek)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $proyek->nama_proyek }}</td>
+                        <td>{{ $anggaranProyek[$item] }}</td>
+                        <td>
+                            @foreach ($proyek->uraians as $uraian)
+                            {{ $uraian->nama_uraian }} <br>
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($proyek->uraians as $uraian)
+                            {{ $uraian->total_biaya }} <br>
+                            @endforeach
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+</div> --}}
 
 @endsection
 

@@ -42,15 +42,14 @@ class ProyekController extends Controller
 
     public function show($id)
     {
+        $proyek = Proyek::findOrFail($id);
         $totalBiaya = 0;
-        $uraians = Uraian::all();
-        foreach ($uraians as $uraian) {
+        foreach ($proyek->uraians as $uraian) {
             if ($uraian['total_biaya'] != null) {
                 $totalBiaya += $uraian['total_biaya'];
             }
         }
 
-        $proyek = Proyek::findOrFail($id);
 
         return view('dashboard.admin.proyek.detail', compact('proyek', 'totalBiaya'));
     }
