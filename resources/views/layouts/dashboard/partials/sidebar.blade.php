@@ -30,6 +30,11 @@
 
 
     <!-- Nav Item - Charts -->
+    <li class="nav-item {{ Request::is($user->role.'/instansi') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('instansi.index') }}">
+            <i class="fas fa-fw fa-project-diagram"></i>
+            <span>Data Instansi</span></a>
+    </li>
     <li class="nav-item {{ Request::is($user->role.'/proyek') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('proyek.index') }}">
             <i class="fas fa-fw fa-project-diagram"></i>

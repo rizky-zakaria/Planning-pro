@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DurasiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyekController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Middleware Admin
     Route::group(['middleware' => ['role:admin'], 'prefix' => '/admin'], function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
+        Route::resource('/instansi', InstansiController::class);
         Route::resource('/proyek', ProyekController::class);
         Route::post('/proyek/uraian/{id}', [ProyekController::class, 'tambahUraian'])->name('uraian.store');
         Route::put('/proyek/uraian/edit/{id}', [ProyekController::class, 'ubahUraian'])->name('uraian.update');
