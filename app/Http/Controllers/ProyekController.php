@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instansi;
 use App\Models\Projek;
 use App\Models\Proyek;
 use App\Models\Uraian;
@@ -14,17 +15,20 @@ class ProyekController extends Controller
     public function index()
     {
         $proyeks = Proyek::all();
-        return view('dashboard.admin.proyek.index', compact('proyeks'));
+        $instansis = Instansi::all();
+        return view('dashboard.admin.proyek.index', compact('proyeks', 'instansis'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
+            'instansi_id' => 'required',
             'nama_proyek' => 'required',
             'uraian' => 'required',
         ]);
 
         $proyek = new Proyek();
+        $proyek->instansi_id = $request->instansi_id;
         $proyek->nama_proyek = $request->nama_proyek;
         $proyek->save();
 

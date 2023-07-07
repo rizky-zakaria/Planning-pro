@@ -10,7 +10,12 @@ class Rab extends Model
     use HasFactory;
 
     protected $fillable = [
-        'uraian_id', 'nama_item', 'anggaran',
+        'uraian_id',
+        'nama_item',
+        'harga_satuan',
+        'volume',
+        'satuan',
+        'harga_total_per_item'
     ];
 
     public function uraian()

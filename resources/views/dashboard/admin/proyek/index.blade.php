@@ -33,6 +33,14 @@
                         @csrf
                         @method('POST')
                         <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="namaInstansi">Nama Instansi:</label>
+                                <select name="instansi_id" id="namaInstansi" class="form-control">
+                                    @foreach ($instansis as $instansi)
+                                    <option value="{{ $instansi->id }}">{{ $instansi->nama_instansi }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <label for="nama">Nama Proyek:</label>
                             <input type="text" class="form-control" name="nama_proyek" id="nama" required>
 

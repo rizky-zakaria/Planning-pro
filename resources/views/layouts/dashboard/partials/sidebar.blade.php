@@ -43,7 +43,7 @@
     <li class="nav-item {{ Request::is($user->role.'/anggaran') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('anggaran.index') }}">
             <i class="fas fa-fw fa-money-bill-alt"></i>
-            <span>Data RAB</span></a>
+            <span>Data Anggaran</span></a>
     </li>
     <li class="nav-item {{ Request::is($user->role.'/waktu_perencanaan') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
