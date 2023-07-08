@@ -60,15 +60,16 @@
         Laporan
     </div>
 
-    <li class="nav-item {{ Request::is($user->role.'/laporan/rab') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
+    <li class="nav-item {{ Request::is('laporan/proyek') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('laporan.proyek') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Laporan Proyek</span></a>
+    </li>
+
+    <li class="nav-item {{ Request::is('laporan/rab') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('laporan.rab') }}">
             <i class="fas fa-fw fa-file-invoice-dollar"></i>
             <span>RAB</span></a>
-    </li>
-    <li class="nav-item {{ Request::is($user->role.'/laporan/durasi') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Waktu Perencanaan</span></a>
     </li>
 
     <!-- Divider -->

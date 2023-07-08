@@ -20,6 +20,6 @@ class Instansi extends Model
 
     public function proyeks()
     {
-        return $this->hasMany(Proyek::all());
+        return $this->hasMany(Proyek::class);
     }
 }

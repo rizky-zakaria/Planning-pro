@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DurasiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstansiController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyekController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/profile', ProfileController::class);
     Route::post('/profile/updatePhoto', [ProfileController::class, 'updatePhoto'])->name('updatePhoto');
+
+    // LAPORAN
+    Route::get('/laporan/rab', [LaporanController::class, 'laporanRab'])->name('laporan.rab');
+    Route::get('/laporan/proyek', [LaporanController::class, 'laporanProyek'])->name('laporan.proyek');
+
+    // CETAK LAPORAN
+    Route::get('/laporan/print', [LaporanController::class, 'cetekLaporanProyek'])->name('print.proyek');
+
 
     // LOGOUT
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

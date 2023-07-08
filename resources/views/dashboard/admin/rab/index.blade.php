@@ -9,8 +9,6 @@
     <h1 class="h3 mb-0 text-gray-800">Halaman Rancangan Anggaran</h1>
 </div>
 
-
-
 <div class="row">
     <div class="col col-12 card shadow mb-4">
         <div class="d-flex card-header justify-content-between align-items-center mr-0 ml-0 py-3">
@@ -39,7 +37,8 @@
                                 <label for="uraian">Uraian Pekerjaan:</label>
                                 <select name="uraian_id" id="uraian" class="form-control">
                                     @foreach ($uraians as $uraian)
-                                    <option value="{{ $uraian->id }}">{{ $uraian->nama_uraian }}</option>
+                                    <option value="{{ $uraian->id }}">{{ $uraian->nama_uraian. " (Proyek
+                                        ".$uraian->proyek->nama_proyek." )" }}</option>
                                     @endforeach
                                 </select>
                             </div>

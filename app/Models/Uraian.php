@@ -13,9 +13,9 @@ class Uraian extends Model
         'proyek_id', 'nama_uraian', 'total_biaya'
     ];
 
-    public function projek()
+    public function proyek()
     {
-        return $this->belongsTo(Projek::class);
+        return $this->belongsTo(Proyek::class);
     }
 
     public function rabs()
