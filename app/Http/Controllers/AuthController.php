@@ -25,10 +25,10 @@ class AuthController extends Controller
             $role = auth()->user()->role;
             if ($role == 'admin') {
                 Alert::toast('Berhasil Login', 'success');
-                return redirect()->route('admin.dashboard');
+                return redirect("admin/dashboard");
             } elseif ($role == 'bos') {
                 Alert::toast('Berhasil Login', 'success');
-                return redirect()->route('bos.dashboard');
+                return redirect("bos/dashboard");
             } else {
                 Alert::toast('Berhasil Login', 'success');
                 return redirect('home');
