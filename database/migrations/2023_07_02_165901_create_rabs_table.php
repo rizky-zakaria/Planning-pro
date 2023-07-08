@@ -18,9 +18,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('uraian_id')->constrained()->onDelete('cascade');
             $table->string('nama_item');
-            $table->float('harga_satuan');
-            $table->float('volume');
             $table->string('satuan');
+            $table->float('volume', 8, 2);
+            $table->float('harga_satuan', 10, 2);
             $table->float('harga_total_per_item', 10, 2);
             $table->timestamps();
         });
