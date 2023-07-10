@@ -14,8 +14,8 @@
                     <a class="nav-link btn btn-warning pl-4 pr-4" href="{{ route('login') }}">Login</a>
                     @endguest
                     @auth
-                    <a class="nav-link btn btn-warning pl-4 pr-4"
-                        href="{{ auth()->user()->role == 'admin' ? route('admin.dashboard') : route('bos.dashboard') }}">Login</a>
+                    <a class="nav-link btn btn-primary pl-4 pr-4"
+                        href="{{ auth()->user()->role == 'admin' ? route('admin.dashboard') : route('bos.dashboard') }}">Dashboard</a>
                     @endauth
                 </li>
             </ul>
