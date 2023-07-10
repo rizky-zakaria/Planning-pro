@@ -10,7 +10,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-items-center ml-auto">
                 <li class="nav-item active">
+                    @guest
                     <a class="nav-link btn btn-warning pl-4 pr-4" href="{{ route('login') }}">Login</a>
+                    @endguest
+                    @auth
+                    <a class="nav-link btn btn-warning pl-4 pr-4"
+                        href="{{ auth()->user()->role == 'admin' ? route('admin.dashboard') : route('bos.dashboard') }}">Login</a>
+                    @endauth
                 </li>
             </ul>
         </div>
