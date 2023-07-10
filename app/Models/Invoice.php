@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'invoice',
+        'status',
+        'tanggal',
+        'proyek_id',
+    ];
+
+    public function proyek()
+    {
+        return $this->belongsTo(Proyek::class);
+    }
 }

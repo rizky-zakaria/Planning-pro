@@ -22,4 +22,14 @@ class Proyek extends Model
     {
         return $this->hasMany(Uraian::class);
     }
+
+    public function dokumen()
+    {
+        return $this->hasOne(DokumenKontrak::class);
+    }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class);
+    }
 }

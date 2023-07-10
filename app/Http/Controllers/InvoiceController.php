@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
+use App\Models\Proyek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InvoiceController extends Controller
 {
@@ -13,7 +17,9 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $invoices = Invoice::all();
+        $proyeks = Proyek::all();
+        return view('dashboard.laporan.tampilan.laporan_invoice', compact('invoices', 'proyeks'));
     }
 
     /**
@@ -34,7 +40,28 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'proyek' => 'required',
+            'tanggal' => 'required',
+            'invoice' => 'required'
+        ]);
+
+        $invoice = new Invoice();
+        $invoice->proyek_id = $request->proyek;
+        $invoice->status = 'Diajukan';
+        $invoice->tanggal = date($request->tanggal);
+
+        $tagihan = $request->file('invoice');
+        $filename = time() . '.' . $tagihan->getClientOriginalExtension();
+
+        $path = $tagihan->storeAs('public/invoice', $filename);
+        $url = Storage::url($path);
+
+        $invoice->invoice = $url;
+        $invoice->save();
+
+        Alert::toast('Berhasil upload bukti tagihan', 'success');
+        return back();
     }
 
     /**
