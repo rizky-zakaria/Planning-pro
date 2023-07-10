@@ -3,9 +3,11 @@
 use App\Http\Controllers\AnggranController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DokumenKontrakController;
 use App\Http\Controllers\DurasiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstansiController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyekController;
@@ -41,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/proyek/uraian/delete/{id}', [ProyekController::class, 'hapusUraian'])->name('uraian.destroy');
         Route::resource('/anggaran', AnggranController::class);
         Route::resource('/waktu_perencanaan', DurasiController::class);
+        Route::resource('/dokumen-kontrak', DokumenKontrakController::class);
+        Route::resource('/invoice', InvoiceController::class);
     });
 
     // Middleware Boss
