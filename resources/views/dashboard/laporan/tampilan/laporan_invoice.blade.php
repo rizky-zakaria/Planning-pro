@@ -107,11 +107,12 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink" style="">
-                                        {{-- <a class="dropdown-item" href="{{ route('proyek.show', $proyek->id) }}"><i
-                                                class="fa fa-eye mr-2"></i>Detail</a> --}}
+                                        <a class="dropdown-item" href="{{ route('invoice.show', $invoice->id) }}"><i
+                                                class="fa fa-check-double mr-2"></i>Update Status</a>
+
                                         <a class="dropdown-item" href="#" data-toggle="modal"
                                             data-target="#editInvoice-{{ $invoice->id }}"><i
-                                                class="fa fa-edit mr-2"></i>Edit</a>
+                                                class="fa fa-edit mr-2"></i>Ubah Data</a>
                                         <a class="dropdown-item" href="#" data-toggle="modal"
                                             data-target="#hapusInvoice-{{ $invoice->id }}"><i
                                                 class="fa fa-trash mr-2"></i>Hapus</a>
@@ -119,56 +120,42 @@
                                 </div>
                             </td>
                             <!-- Modal Edit Instansi-->
-                            {{-- <div class="modal fade" id="editInstansi-{{ $instansi->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="editInstansiLabel" aria-hidden="true">
+                            <div class="modal fade" id="editInvoice-{{ $invoice->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="editInvoiceLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header justify-content-between">
-                                            <h5 class="modal-title" id="editInstansiLabel">Edit Instansi {{
-                                                $instansi->nama_instansi }}</h5>
+                                            <h5 class="modal-title" id="editInvoiceLabel">Ubah Bukti Invoice {{
+                                                $invoice->proyek->nama_proyek }}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="{{ route('instansi.update', $instansi->id) }}" method="post">
+                                        <form action="{{ route('invoice.update', $invoice->id) }}" method="post"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="namaInstansi">Nama Instansi:</label>
-                                                    <input type="text" class="form-control" name="nama_instansi"
-                                                        id="namaInstansi" value="{{ $instansi->nama_instansi }}"
-                                                        required>
+                                                    <label for="namaProyek">Proyek</label>
+                                                    <select name="proyek" id="namaProyek" class="form-control">
+                                                        <option value="{{ $invoice->proyek_id }}">{{
+                                                            $invoice->proyek->nama_proyek }}</option>
+                                                        @foreach ($proyeks as $proyek)
+                                                        <option value="{{ $proyek->id }}">{{ $proyek->nama_proyek }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="programInstansi">Program Instansi:</label>
-                                                    <input type="text" class="form-control" name="program_instansi"
-                                                        id="programInstansi" value="{{ $instansi->program_instansi }}"
-                                                        required>
+                                                    <label for="tanggal">Tanggal Pengajuan</label>
+                                                    <input type="date" class="form-control" name="tanggal" id="tanggal"
+                                                        value="{{ $invoice->tanggal }}" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="kegiatanInstansi">Kegiatan Instansi:</label>
-                                                    <input type="text" class="form-control" name="kegiatan_instansi"
-                                                        id="kegiatanInstansi" value="{{ $instansi->kegiatan_instansi }}"
-                                                        required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="tujuanProyek">Tujuan Proyek:</label>
-                                                    <input type="text" class="form-control" name="tujuan_proyek"
-                                                        id="tujuanProyek" value="{{ $instansi->tujuan_proyek }}"
-                                                        required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="lokasiInstansi">Lokasi Instansi:</label>
-                                                    <input type="text" class="form-control" name="lokasi_instansi"
-                                                        id="lokasiInstansi" value="{{ $instansi->lokasi_instansi }}"
-                                                        required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="tahunAnggaran">Tahun Anggaran:</label>
-                                                    <input type="text" class="form-control" name="tahun_anggaran"
-                                                        id="tahunAnggaran" value="{{ $instansi->tahun_anggaran }}"
-                                                        required>
+                                                    <label for="buktiTagihan">Upload Bukti Tagihan</label>
+                                                    <input type="file" class="form-control" name="invoice"
+                                                        id="buktiTagihan">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -179,30 +166,28 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                             {{-- End Modal --}}
 
+
                             <!-- Modal Hapus-->
-                            {{-- <div class="modal fade" id="hapusInstansi-{{ $instansi->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="hapusInvoice-{{ $invoice->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Yakin ingin menghapus {{
-                                                $instansi->nama_instansi }}?</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Yakin ingin menghapus bukti
+                                                tagihan{{
+                                                $invoice->proyek->nama_proyek }}?</h5>
                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
-                                        <form action="{{ route('instansi.destroy', $instansi->id) }}" method="post">
+                                        <form action="{{ route('invoice.destroy', $invoice->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-body">Pilih "Hapus" dibawah ini jika anda siap untuk
-                                                menghapus data instansi.
-                                            </div>
-                                            <div class="px-3">
-                                                <sup class="text-danger">Catatan: ini akan menghapus urainnya dan semua
-                                                    yang terhubung ke instansi ini</sup>
+                                                menghapus invoice.
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" type="button"
@@ -212,7 +197,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                         </tr>
                         @endforeach
                     </tbody>

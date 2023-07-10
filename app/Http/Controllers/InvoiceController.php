@@ -7,6 +7,7 @@ use App\Models\Proyek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
 
 class InvoiceController extends Controller
 {
@@ -22,22 +23,6 @@ class InvoiceController extends Controller
         return view('dashboard.laporan.tampilan.laporan_invoice', compact('invoices', 'proyeks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -64,48 +49,59 @@ class InvoiceController extends Controller
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+        $invoice->update([
+            'status' => 'Dibayarkan',
+        ]);
+        Alert::toast('Tagihan telah dibayarkan', 'success');
+        return redirect()->route('invoice.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'proyek' => 'required',
+            'tanggal' => 'required',
+        ]);
+
+        $invoice = Invoice::findOrFail($id);
+        // cek jika terdapat dokument invoice baru
+        if ($request->file('invoice')) {
+            // jika ada maka hapus invoice lama
+            Storage::disk('public')->delete(Str::after($invoice->invoice, 'storage/'));
+
+            // buat upload invoice baru
+            $tagihan = $request->file('invoice');
+            $filename = time() . '.' . $tagihan->getClientOriginalExtension();
+
+            $path = $tagihan->storeAs('public/invoice', $filename);
+            $url = Storage::url($path);
+
+            $invoice->update([
+                'proye_id' => $request->proyek,
+                'tanggal' => $request->tanggal,
+                'invoice' => $url
+            ]);
+        } else {
+            $invoice->update([
+                'proye_id' => $request->proyek,
+                'tanggal' => $request->tanggal,
+            ]);
+        }
+
+        Alert::toast('Berhasil ubah bukti tagihan', 'success');
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+        Storage::disk('public')->delete(Str::after($invoice->invoice, 'storage/'));
+        $invoice->delete();
+
+        Alert::toast('Berhasil menghapus invoice', 'success');
+        return back();
     }
 }

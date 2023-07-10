@@ -58,13 +58,13 @@
         Laporan
     </div>
 
-    <li class="nav-item {{ Request::is('dokumen-kontrak') ? 'active' : '' }}">
+    <li class="nav-item {{ Request::is('*/dokumen_kontrak') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('dokumen_kontrak.index') }}">
             <i class="fas fa-fw fa-file-alt"></i>
             <span>Dokumen Kontrak</span></a>
     </li>
 
-    <li class="nav-item {{ Request::is('invoice') ? 'active' : '' }}">
+    <li class="nav-item {{ Request::is('*/invoice') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('invoice.index') }}">
             <i class="fas fa-fw fa-file-alt"></i>
             <span>Bukti Tagihan</span></a>
