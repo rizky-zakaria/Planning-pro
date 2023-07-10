@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnggranController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DesainController;
 use App\Http\Controllers\DokumenKontrakController;
 use App\Http\Controllers\DurasiController;
 use App\Http\Controllers\HomeController;
@@ -45,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/waktu_perencanaan', DurasiController::class);
         Route::resource('/dokumen_kontrak', DokumenKontrakController::class);
         Route::resource('/invoice', InvoiceController::class);
+        Route::resource('/ded', DesainController::class);
     });
 
     // Middleware Boss

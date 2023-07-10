@@ -32,4 +32,9 @@ class Proyek extends Model
     {
         return $this->hasOne(Invoice::class);
     }
+
+    public function desain()
+    {
+        return $this->hasOne(Desain::class);
+    }
 }

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('dokumen_kontraks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('proyek_id')->constrained()->onDelete('cascade');
             $table->string('dokumen');
-            $table->bigInteger('proyek_id');
             $table->timestamps();
         });
     }

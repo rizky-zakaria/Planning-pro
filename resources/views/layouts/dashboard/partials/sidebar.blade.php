@@ -44,6 +44,11 @@
             <i class="fas fa-fw fa-money-bill-alt"></i>
             <span>Data Anggaran</span></a>
     </li>
+    <li class="nav-item {{ Request::is($user->role . '/ded') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('ded.index') }}">
+            <i class="fas fa-fw fa-pen-nib"></i>
+            <span>Desain Perencanaan</span></a>
+    </li>
     <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
             <i class="fas fa-fw fa-calendar-alt"></i>
