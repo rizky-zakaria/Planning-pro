@@ -35,6 +35,6 @@ class Proyek extends Model
 
     public function desain()
     {
-        return $this->hasOne(Desain::class);
+        return $this->hasMany(Desain::class);
     }
 }

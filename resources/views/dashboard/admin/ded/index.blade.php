@@ -82,9 +82,15 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($desains as $desain)
+                        @foreach ($proyeks as $proyek)
+                        @php
+                        $baris = count($proyek->desain) + 1;
+                        @endphp
                         <tr>
-                            <td>{{ $desain->proyek->nama_proyek }}</td>
+                            <td rowspan="{{ $baris }}">{{ $proyek->nama_proyek }}</td>
+                        </tr>
+                        @foreach ($proyek->desain as $desain)
+                        <tr>
                             <td>
                                 {{-- <img class="rounded mb-2" style="height: 10rem"
                                     src="{{ $desain->gambar_desain ? $desain->gambar_desain : asset('assets/dashboard/img/avatar_male.svg') }}"
@@ -187,6 +193,7 @@
                                 </div>
                             </div>
                         </tr>
+                        @endforeach
                         @endforeach
                     </tbody>
                 </table>
