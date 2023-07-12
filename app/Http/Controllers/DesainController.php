@@ -22,18 +22,18 @@ class DesainController extends Controller
     {
         $request->validate([
             'proyek' => 'required',
-            'gambar_desain' => 'required|image|max:5120',
+            'ded' => 'required|max:5120',
         ]);
 
-        $gambar = $request->file('gambar_desain');
-        $filename = time() . '.' . $gambar->getClientOriginalExtension();
+        $file = $request->file('ded');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
 
-        $path = $gambar->storeAs('public/photo', $filename);
+        $path = $file->storeAs('public/ded', $filename);
         $url = Storage::url($path);
 
         $desain = new Desain();
         $desain->proyek_id = $request->proyek;
-        $desain->gambar_desain = $url;
+        $desain->ded = $url;
         $desain->save();
 
         Alert::toast('Berhasil tambah desain perencanaan', 'success');

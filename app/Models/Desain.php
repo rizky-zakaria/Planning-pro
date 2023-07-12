@@ -11,7 +11,7 @@ class Desain extends Model
 
     protected $fillable = [
         'proyek_id',
-        'gambar_desain',
+        'ded',
     ];
 
     public function proyek()

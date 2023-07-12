@@ -6,17 +6,17 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Desain Perencaan</h1>
+    <h1 class="h3 mb-0 text-gray-800">Desain Perencanaan</h1>
 </div>
 
 
 <div class="row">
     <div class="col col-12 card shadow mb-4">
         <div class="d-flex card-header justify-content-between align-items-center mr-0 ml-0 py-3">
-            <h5 class="m-0 font-weight-bold text-primary float-left">List DED (Detail Engineering Design)</h5>
+            <h5 class="m-0 font-weight-bold text-primary float-left">Desain DED (Detail Engineering Design)</h5>
             <button class="btn btn-sm btn-primary shadow-sm float-right" data-toggle="modal"
                 data-target="#tambahDesain"><i class="fas fa-plus fa-sm text-white-50 mr-2"></i>Tambah
-                Desain Perencanaan</button>
+                DED</button>
         </div>
         <!-- Modal Tambah Instansi-->
         <div class="modal fade" id="tambahDesain" tabindex="-1" role="dialog" aria-labelledby="tambahDesainLabel"
@@ -24,7 +24,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header justify-content-between">
-                        <h5 class="modal-title" id="tambahDesainLabel">Tambah Gambar Desain</h5>
+                        <h5 class="modal-title" id="tambahDesainLabel">Tambah DED</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -49,7 +49,7 @@
                                     <label for="imageInput" class="custom-file-upload">
                                         <i class="fas fa-cloud-upload-alt"></i> Choose File
                                     </label>
-                                    <input type="file" id="imageInput" name="gambar_desain" accept="image/*" required>
+                                    <input type="file" id="imageInput" name="ded" required>
                                 </div>
                                 <small class="form-text text-muted text-center">JPG or PNG no larger than 5 MB</small>
                             </div>
@@ -86,9 +86,14 @@
                         <tr>
                             <td>{{ $desain->proyek->nama_proyek }}</td>
                             <td>
-                                <img class="rounded mb-2" style="height: 10rem"
+                                {{-- <img class="rounded mb-2" style="height: 10rem"
                                     src="{{ $desain->gambar_desain ? $desain->gambar_desain : asset('assets/dashboard/img/avatar_male.svg') }}"
-                                    alt="" />
+                                    alt="" /> --}}
+                                <a href="{{ $desain->ded }}" target="_blank" class="mr-3"><i
+                                        class="fas fa-eye mr-2"></i>Lihat DED</a> |
+                                <a href="{{ $desain->ded }}" target="_blank" class="mr-3" download=""><i
+                                        class="fas fa-download mr-2"></i>Download
+                                    DED</a>
                             </td>
                             <td>
                                 <div class="dropdown no-arrow">

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('desains', function (Blueprint $table) {
             $table->id();
             $table->foreignId('proyek_id')->constrained()->onDelete('cascade');
-            $table->string('gambar_desain');
+            $table->string('ded');
             $table->timestamps();
         });
     }
