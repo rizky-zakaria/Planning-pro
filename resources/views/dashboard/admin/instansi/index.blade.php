@@ -29,7 +29,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('instansi.store') }}" method="post">
+                    <form action="{{ route('instansi.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         <div class="modal-body">
@@ -60,6 +60,10 @@
                                 <label for="tahunAnggaran">Tahun Anggaran:</label>
                                 <input type="text" class="form-control" name="tahun_anggaran" id="tahunAnggaran"
                                     required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dokumenSpk">Dokumen Surat Perjanjian Kerja (SPK):</label>
+                                <input type="file" class="form-control" name="dokumen_spk" id="dokumenSpk" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -114,8 +118,8 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink" style="">
-                                        {{-- <a class="dropdown-item" href="{{ route('proyek.show', $proyek->id) }}"><i
-                                                class="fa fa-eye mr-2"></i>Detail</a> --}}
+                                        <a class="dropdown-item" href="{{ $instansi->dokumen_spk }}"><i
+                                                class="fa fa-eye mr-2"></i>Lihat Dokumen</a>
                                         <a class="dropdown-item" href="#" data-toggle="modal"
                                             data-target="#editInstansi-{{ $instansi->id }}"><i
                                                 class="fa fa-edit mr-2"></i>Edit</a>
@@ -137,45 +141,51 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="{{ route('instansi.update', $instansi->id) }}" method="post">
+                                        <form action="{{ route('instansi.update', $instansi->id) }}" method="post"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="namaInstansi">Nama Instansi:</label>
+                                                    <label for="namaInstansi required">Nama Instansi:</label>
                                                     <input type="text" class="form-control" name="nama_instansi"
                                                         id="namaInstansi" value="{{ $instansi->nama_instansi }}"
                                                         required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="programInstansi">Program Instansi:</label>
+                                                    <label for="programInstansi required">Program Instansi:</label>
                                                     <input type="text" class="form-control" name="program_instansi"
                                                         id="programInstansi" value="{{ $instansi->program_instansi }}"
                                                         required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="kegiatanInstansi">Kegiatan Instansi:</label>
+                                                    <label for="kegiatanInstansi required">Kegiatan Instansi:</label>
                                                     <input type="text" class="form-control" name="kegiatan_instansi"
                                                         id="kegiatanInstansi" value="{{ $instansi->kegiatan_instansi }}"
                                                         required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="tujuanProyek">Tujuan Proyek:</label>
+                                                    <label for="tujuanProyek required">Tujuan Proyek:</label>
                                                     <input type="text" class="form-control" name="tujuan_proyek"
                                                         id="tujuanProyek" value="{{ $instansi->tujuan_proyek }}"
                                                         required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="lokasiInstansi">Lokasi Instansi:</label>
+                                                    <label for="lokasiInstansi required">Lokasi Instansi:</label>
                                                     <input type="text" class="form-control" name="lokasi_instansi"
                                                         id="lokasiInstansi" value="{{ $instansi->lokasi_instansi }}"
                                                         required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="tahunAnggaran">Tahun Anggaran:</label>
+                                                    <label for="tahunAnggaran required">Tahun Anggaran:</label>
                                                     <input type="text" class="form-control" name="tahun_anggaran"
                                                         id="tahunAnggaran" value="{{ $instansi->tahun_anggaran }}"
                                                         required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="dokumenSpk">Dokumen Surat Perjanjian Kerja:</label>
+                                                    <input type="file" class="form-control" name="dokumen_spk"
+                                                        id="dokumenSpk">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
