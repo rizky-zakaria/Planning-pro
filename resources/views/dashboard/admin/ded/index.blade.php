@@ -82,19 +82,18 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        {{-- @foreach ($proyeks as $proyek)
+                        @foreach ($proyeks as $proyek)
                         @php
                         $baris = count($proyek->desain) + 1;
                         @endphp
+                        @if ($proyek->desain->isNotEmpty())
+
                         <tr>
                             <td rowspan="{{ $baris }}">{{ $proyek->nama_proyek }}</td>
-                        </tr> --}}
-                        @foreach ($desains as $desain)
-                        @php
-                        $baris = count($desains) + 1;
-                        @endphp
+                        </tr>
+                        @endif
+                        @foreach ($proyek->desain as $desain)
                         <tr>
-                            <td rowspan="{{ $baris }}">{{ $desain->proyek->nama_proyek }}</td>
                             <td>
                                 <a href="{{ $desain->ded }}" target="_blank" class="mr-3"><i
                                         class="fas fa-eye mr-2"></i>Lihat DED</a> |
@@ -195,7 +194,7 @@
                             </div>
                         </tr>
                         @endforeach
-                        {{-- @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
