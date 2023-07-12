@@ -6,30 +6,44 @@ use App\Models\Instansi;
 use App\Models\Proyek;
 use App\Models\Uraian;
 use Barryvdh\DomPDF\Facade\Pdf;
+// use PDF;
+// use Barryvdh\DomPDF\PDF as PDFLAIN;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
-    public function laporanRab()
+    public function laporanRab(Request $request)
     {
-        $uraians = Uraian::all();
-        return view('dashboard.laporan.tampilan.laporan_rab', compact('uraians'));
+        $proyeks = Proyek::all();
+        $selectedProyek = $request->input('proyek');
+
+        // Lakukan logika filtering sesuai dengan nilai $selectedProyek
+        if ($selectedProyek && $selectedProyek !== 'all') {
+            $proyeks = Proyek::where('id', $selectedProyek)->get();
+        }
+
+        return view('dashboard.laporan.tampilan.laporan_rab', compact('proyeks', 'selectedProyek'));
     }
 
-    public function cetakLaporanRab()
+    public function cetakLaporanRab(Request $request)
     {
+        $selectedProyek = $request->input('proyek');
+
+        // Lakukan logika filtering sesuai dengan nilai $selectedProyek
+        if ($selectedProyek && $selectedProyek !== 'all') {
+            $proyeks = Proyek::where('id', $selectedProyek)->first();
+            $instansis = Instansi::where('id', $proyeks['id'])->get();
+        } else {
+            $proyeks = Proyek::all();
+            $instansis = Instansi::all();
+        }
+
+        $pdf = Pdf::loadView('dashboard.laporan.cetak.print_rab', compact('proyeks', 'instansis'))->setPaper('A4', 'potrait');
+        return $pdf->stream('laporan_rab_proyek');
     }
 
     public function laporanProyek(Request $request)
     {
-        $instansis = Instansi::all();
-        $pilihInstansi = $request->input('instansi');
-
-        if ($pilihInstansi && $pilihInstansi !== 'all') {
-            $instansis = Instansi::where('id', $pilihInstansi)->get();
-        }
-
-
         $proyeks = Proyek::all();
         $selectedProyek = $request->input('proyek');
 
@@ -39,7 +53,7 @@ class LaporanController extends Controller
         }
 
 
-        return view('dashboard.laporan.tampilan.laporan_proyek', compact('instansis', 'pilihInstansi', 'proyeks', 'selectedProyek'));
+        return view('dashboard.laporan.tampilan.laporan_proyek', compact('proyeks', 'selectedProyek'));
     }
 
     public function cetekLaporanProyek(Request $request)
@@ -48,17 +62,14 @@ class LaporanController extends Controller
 
         // Lakukan logika filtering sesuai dengan nilai $selectedProyek
         if ($selectedProyek && $selectedProyek !== 'all') {
-            $proyeks = Proyek::where('id', $selectedProyek)->get();
-            foreach ($proyeks as $proyek) {
-                $instansi = $proyek->instansi;
-            }
+            $proyeks = Proyek::where('id', $selectedProyek)->first();
+            $instansis = Instansi::where('id', $proyeks['id'])->get();
         } else {
             $proyeks = Proyek::all();
+            $instansis = Instansi::all();
         }
 
-        // Logika cetak PDF atau cetak ke printer sesuai kebutuhan Anda
-
-        $pdf = Pdf::loadview('dashboard.laporan.cetak.print_proyek', compact('proyeks', 'instansi'))->setPaper('A4', 'potrait');
-        return $pdf->stream();
+        $pdf = Pdf::loadView('dashboard.laporan.cetak.print_proyek', compact('proyeks', 'instansis'))->setPaper('A4', 'potrait');
+        return $pdf->stream('laporan_data_proyek');
     }
 }

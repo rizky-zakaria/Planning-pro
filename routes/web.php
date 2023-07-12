@@ -62,7 +62,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/laporan/proyek', [LaporanController::class, 'laporanProyek'])->name('laporan.proyek');
 
     // CETAK LAPORAN
-    Route::get('/laporan/print', [LaporanController::class, 'cetekLaporanProyek'])->name('print.proyek');
+    Route::get('/laporan/print-proyek', [LaporanController::class, 'cetekLaporanProyek'])->name('print.proyek');
+    Route::get('/laporan/print-rab', [LaporanController::class, 'cetakLaporanRab'])->name('print.rab');
 
 
     // LOGOUT

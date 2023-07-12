@@ -33,8 +33,8 @@
                 </div>
                 <div class="py-2">
                     <label for="nama">Total Proyek:</label>
-                    <input type="text" class="form-control" name="nama_proyek" id="nama" value="Rp. {{ $totalBiaya }}"
-                        disabled>
+                    <input type="text" class="form-control" name="nama_proyek" id="nama"
+                        value="Rp. {{ number_format($totalBiaya, 2, ',', '.')  }}" disabled>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $uraian->nama_uraian }}</td>
-                                <td>Rp. {{ $uraian->total_biaya ?? "0"}}</td>
+                                <td>Rp. {{ number_format($uraian->total_biaya ?? 0, 2, ',', '.') }}</td>
                                 <td>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"

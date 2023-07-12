@@ -124,12 +124,15 @@
             <thead style="background-color: brown; color: white">
                 <tr>
                     <th width="5%">NO</th>
-                    <th width="65%">URAIAN PEKERJAAN</th>
-                    <th width="30%">HARGA SATUAN</th>
+                    <th>RINCIAN PEKERJAAN</th>
+                    <th>SATUAN</th>
+                    <th>VOLUME</th>
+                    <th>HARGA SATUAN (RP)</th>
+                    <th>JUMLAH HARGA (RP)</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($instansi->proyeks as $proyek)
+                {{-- @foreach ($instansi->proyeks as $proyek)
                 @php
                 $totalBiaya = 0;
                 foreach ($proyek->uraians as $uraian) {
@@ -151,26 +154,14 @@
                     <td>Rp. {{ number_format($uraian->total_biaya ?? 0, 2, ',', '.') }}</td>
                 </tr>
                 @endforeach
+                @endforeach --}}
+
+                @foreach ($instansi->proyeks as $proyek)
+                @foreach ($proyek->uraians as $uraian)
+
+                @endforeach
                 @endforeach
             </tbody>
-            <tfoot>
-                <tr style="background-color: brown; color: white">
-                    <td colspan="2" style="text-align: center">JUMLAH</td>
-                    <td>Rp. {{ number_format($totalBiaya, 2, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: right">PAJAK PERTAMBAHAN NILAI (PPN) 11%</td>
-                    <td>Rp. {{ number_format($pajak, 2, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: right">JUMLAH TOTAL</td>
-                    <td>Rp. {{ number_format($jumlahTotal, 2, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: right">DIBULATKAN</td>
-                    <td>Rp. {{ number_format($pembulatan, 0, ',', '.') }}</td>
-                </tr>
-            </tfoot>
         </table>
     </div>
     @endforeach

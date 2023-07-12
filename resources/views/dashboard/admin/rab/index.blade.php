@@ -98,19 +98,25 @@
                             <th>Volume</th>
                             <th>Harga Satuan</th>
                             <th>Harga Total</th>
-                            <th>Akse</th>
+                            <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($rabs as $anggaran)
+                        @foreach ($uraians as $uraian)
+                        @php
+                        $jumlahBaris = count($uraian->rabs) +1;
+                        @endphp
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $anggaran->uraian->nama_uraian }}</td>
-                            <td>{{ $anggaran->nama_item }}</td>
-                            <td>{{ $anggaran->satuan }}</td>
-                            <td>{{ $anggaran->volume }}</td>
-                            <td>Rp. {{ $anggaran->harga_satuan }}</td>
-                            <td>Rp. {{ $anggaran->harga_total_per_item }}</td>
+                            <td rowspan="{{ $jumlahBaris }}">{{ $loop->iteration }}</td>
+                            <td rowspan="{{ $jumlahBaris }}">{{ $uraian->nama_uraian }}</td>
+                            @forelse ($uraian->rabs as $anggaran)
+
+                        <tr>
+                            <td>{{ $anggaran->nama_item ?? '-'}}</td>
+                            <td>{{ $anggaran->satuan ?? '-'}}</td>
+                            <td>{{ $anggaran->volume ?? '-'}}</td>
+                            <td>Rp. {{ number_format($anggaran->harga_satuan ?? 0, 2, ',', '.') }}</td>
+                            <td>Rp. {{ number_format($anggaran->harga_total_per_item ?? 0, 2, ',', '.') }}</td>
                             <td>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -218,6 +224,14 @@
                                     </div>
                                 </div>
                             </div>
+                        </tr>
+                        @empty
+                        {{-- <td colspan="7" class="text-center">Belum Ada Data</td> --}}
+                        {{-- <tr> --}}
+                            <td colspan="9" class="text-center">Belum Ada Data</td>
+                            {{--
+                        </tr> --}}
+                        @endforelse
                         </tr>
                         @endforeach
                     </tbody>

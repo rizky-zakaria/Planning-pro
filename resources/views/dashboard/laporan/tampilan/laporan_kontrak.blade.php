@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col col-12 card shadow mb-4">
         <div class="d-flex card-header justify-content-between align-items-center mr-0 ml-0 py-3">
-            <h5 class="m-0 font-weight-bold text-primary float-left">List Data Tagihan</h5>
+            <h5 class="m-0 font-weight-bold text-primary float-left">List Dokumen Kontrak</h5>
             <button class="btn btn-sm btn-primary shadow-sm float-right" data-toggle="modal"
                 data-target="#tambahKontrak"><i class="fas fa-plus fa-sm text-white-50 mr-2"></i>Tambah
                 Dokumen Kontrak</button>
