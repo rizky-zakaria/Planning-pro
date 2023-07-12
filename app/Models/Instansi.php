@@ -16,6 +16,7 @@ class Instansi extends Model
         'lokasi_instansi',
         'tujuan_proyek',
         'tahun_anggaran',
+        'dokumen_spk',
     ];
 
     public function proyeks()

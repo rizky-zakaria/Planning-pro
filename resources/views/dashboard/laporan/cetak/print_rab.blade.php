@@ -158,7 +158,9 @@
 
                 @foreach ($instansi->proyeks as $proyek)
                 @foreach ($proyek->uraians as $uraian)
-
+                <tr>
+                    <td></td>
+                </tr>
                 @endforeach
                 @endforeach
             </tbody>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('lokasi_instansi');
             $table->string('tujuan_proyek');
             $table->string('tahun_anggaran');
+            $table->string('dokumen_spk')->nullable();
             $table->timestamps();
         });
     }
