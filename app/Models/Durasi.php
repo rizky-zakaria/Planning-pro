@@ -10,11 +10,16 @@ class Durasi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'uraian_id', 'hari'
+        'instansi_id',
+        'lama_pengerjaan',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'dokumen_spmk',
+        'keterangan',
     ];
 
-    public function uraian()
+    public function instansi()
     {
-        return $this->belongsTo(Uraian::class);
+        return $this->belongsTo(Instansi::class);
     }
 }

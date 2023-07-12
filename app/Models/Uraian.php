@@ -23,8 +23,8 @@ class Uraian extends Model
         return $this->hasMany(Rab::class);
     }
 
-    public function durasi()
-    {
-        return $this->hasOne(Durasi::class);
-    }
+    // public function durasi()
+    // {
+    //     return $this->hasOne(Durasi::class);
+    // }
 }

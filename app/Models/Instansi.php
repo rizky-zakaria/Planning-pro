@@ -23,4 +23,9 @@ class Instansi extends Model
     {
         return $this->hasMany(Proyek::class);
     }
+
+    public function durasi()
+    {
+        return $this->hasOne(Durasi::class);
+    }
 }

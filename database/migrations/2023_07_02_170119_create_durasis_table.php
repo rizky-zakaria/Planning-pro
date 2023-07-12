@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('durasis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('uraian_id')->constrained()->onDelete('cascade');
-            $table->integer('hari');
+            $table->foreignId('instansi_id')->constrained()->onDelete('cascade');
+            $table->integer('lama_pengerjaan');
+            $table->string('tanggal_mulai');
+            $table->string('tanggal_selesai');
+            $table->string('dokumen_spmk');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

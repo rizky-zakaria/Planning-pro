@@ -23,8 +23,7 @@
                             </option>
                             @endforeach
                         </select>
-                        {{--
-                </div> --}}
+                </div>
                 <button type="submit" class="btn btn-warning mt-4"><i class="fas fa-filter mr-3"></i>Filter</button>
                 </form>
             </div>

@@ -12,6 +12,26 @@
 
 <div class="row">
     <div class="col col-12 card shadow mb-4">
+        <div class="card-header mr-0 ml-0 py-3">
+            <div class="row">
+                <div class="col-md-11 col-12">
+                    <h6>Filter Data</h6>
+                    <form action="{{ route('proyek.index') }}" method="GET">
+                        <select name="instansi" id="dataInstansi" class="form-control col-md-4">
+                            <option value="all" {{ $selectedInstansi=='all' ? 'selected' : '' }}>Semua Proyek</option>
+                            @foreach ($instansis as $instansi)
+                            <option value="{{ $instansi->id }}" {{ $selectedInstansi==$instansi->id ? 'selected' : ''
+                                }}>
+                                {{ $instansi->nama_instansi }}
+                            </option>
+                            @endforeach
+                        </select>
+                </div>
+                <button type="submit" class="btn btn-warning mt-4"><i class="fas fa-filter mr-3"></i>Filter</button>
+                </form>
+            </div>
+        </div>
+
         <div class="d-flex card-header justify-content-between align-items-center mr-0 ml-0 py-3">
             <h5 class="m-0 font-weight-bold text-primary float-left">List Data Proyek</h5>
             <button class="btn btn-sm btn-primary shadow-sm float-right" data-toggle="modal"

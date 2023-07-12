@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proyek;
 use App\Models\Rab;
 use App\Models\Uraian;
 use Illuminate\Http\Request;
@@ -9,11 +10,23 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggranController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $rabs = Rab::all();
+        // $rabs = Rab::all();
         $uraians = Uraian::all();
-        return view('dashboard.admin.rab.index', compact('rabs', 'uraians'));
+
+        $proyeks = Proyek::all();
+        $selectedProyek = $request->input('proyek');
+
+        // Lakukan logika filtering sesuai dengan nilai $selectedProyek
+        if ($selectedProyek && $selectedProyek !== 'all') {
+            $proyeks = Proyek::where('id', $selectedProyek)->get();
+            $uraians = [];
+            foreach ($proyeks as $proyek) {
+                $uraians = $proyek->uraians;
+            }
+        }
+        return view('dashboard.admin.rab.index', compact('uraians', 'proyeks', 'selectedProyek'));
     }
 
     public function store(Request $request)

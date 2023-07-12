@@ -44,8 +44,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/proyek/uraian/delete/{id}', [ProyekController::class, 'hapusUraian'])->name('uraian.destroy');
         Route::resource('/anggaran', AnggranController::class);
         Route::resource('/waktu_perencanaan', DurasiController::class);
-        Route::resource('/dokumen_kontrak', DokumenKontrakController::class);
-        Route::resource('/invoice', InvoiceController::class);
         Route::resource('/ded', DesainController::class);
     });
 

@@ -12,11 +12,26 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ProyekController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // $proyeks = Proyek::all();
+        // $instansis = Instansi::all();
+
         $proyeks = Proyek::all();
         $instansis = Instansi::all();
-        return view('dashboard.admin.proyek.index', compact('proyeks', 'instansis'));
+
+        $selectedInstansi = $request->input('instansi');
+
+        // Lakukan logika filtering sesuai dengan nilai $selectedProyek
+        if ($selectedInstansi && $selectedInstansi !== 'all') {
+            $instansis = Instansi::where('id', $selectedInstansi)->get();
+            $proyeks = [];
+            foreach ($instansis as $instansi) {
+                $proyeks = $instansi->proyeks;
+            }
+        }
+
+        return view('dashboard.admin.proyek.index', compact('proyeks', 'instansis', 'selectedInstansi'));
     }
 
     public function store(Request $request)

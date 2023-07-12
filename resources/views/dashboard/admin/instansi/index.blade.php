@@ -118,7 +118,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink" style="">
-                                        <a class="dropdown-item" href="{{ $instansi->dokumen_spk }}"><i
+                                        <a class="dropdown-item" target="_blank" href="{{ $instansi->dokumen_spk }}"><i
                                                 class="fa fa-eye mr-2"></i>Lihat Dokumen</a>
                                         <a class="dropdown-item" href="#" data-toggle="modal"
                                             data-target="#editInstansi-{{ $instansi->id }}"><i

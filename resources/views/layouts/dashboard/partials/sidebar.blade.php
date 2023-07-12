@@ -52,7 +52,7 @@
     <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
             <i class="fas fa-fw fa-calendar-alt"></i>
-            <span>Waktu Perencanaan</span></a>
+            <span>Waktu Pelaksanaan</span></a>
     </li>
     @endif
 
@@ -62,18 +62,6 @@
     <div class="sidebar-heading">
         Laporan
     </div>
-
-    {{-- <li class="nav-item {{ Request::is('*/dokumen_kontrak') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dokumen_kontrak.index') }}">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Dokumen Kontrak</span></a>
-    </li>
-
-    <li class="nav-item {{ Request::is('*/invoice') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('invoice.index') }}">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Bukti Tagihan</span></a>
-    </li> --}}
 
     <li class="nav-item {{ Request::is('laporan/proyek') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('laporan.proyek') }}">
