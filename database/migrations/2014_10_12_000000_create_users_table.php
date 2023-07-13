@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'bos']);
+            $table->enum('role', ['admin', 'direktur', 'estimator', 'draftek']);
             $table->string('photo_profile')->nullable();
             $table->rememberToken();
             $table->timestamps();

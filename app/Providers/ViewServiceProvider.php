@@ -30,7 +30,11 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer([
-            'layouts.dashboard.template', 'dashboard.admin.dashboard', 'dashboard.bos.dashboard'
+            'layouts.dashboard.template',
+            'dashboard.admin.dashboard',
+            'dashboard.direktur.dashboard',
+            'dashboard.estimator.dashboard',
+            'dashboard.draftek.dashboard',
         ], function ($view) {
             $user = Auth::user();
             $proyekCount = Proyek::count();

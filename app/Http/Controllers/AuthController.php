@@ -26,9 +26,15 @@ class AuthController extends Controller
             if ($role == 'admin') {
                 Alert::toast('Berhasil Login', 'success');
                 return redirect("admin/dashboard");
-            } elseif ($role == 'bos') {
+            } elseif ($role == 'direktur') {
                 Alert::toast('Berhasil Login', 'success');
-                return redirect("bos/dashboard");
+                return redirect("direktur/dashboard");
+            } elseif ($role == 'estimator') {
+                Alert::toast('Berhasil Login', 'success');
+                return redirect("estimator/dashboard");
+            } elseif ($role == 'draftek') {
+                Alert::toast('Berhasil Login', 'success');
+                return redirect("draftek/dashboard");
             } else {
                 Alert::toast('Berhasil Login', 'success');
                 return redirect('home');

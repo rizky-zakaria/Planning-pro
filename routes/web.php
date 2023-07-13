@@ -48,8 +48,24 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // Middleware Boss
-    Route::group(['middleware' => ['role:bos'], 'prefix' => '/bos'], function () {
-        Route::get('/dashboard', [DashboardController::class, 'bos'])->name('bos.dashboard');
+    Route::group(['middleware' => ['role:direktur'], 'prefix' => '/direktur'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'direktur'])->name('direktur.dashboard');
+    });
+
+    Route::group(['middleware' => ['role:estimator'], 'prefix' => '/estimator'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'estimator'])->name('estimator.dashboard');
+        Route::resource('/instansi', InstansiController::class);
+        Route::resource('/proyek', ProyekController::class);
+        Route::post('/proyek/uraian/{id}', [ProyekController::class, 'tambahUraian'])->name('uraian.store');
+        Route::put('/proyek/uraian/edit/{id}', [ProyekController::class, 'ubahUraian'])->name('uraian.update');
+        Route::delete('/proyek/uraian/delete/{id}', [ProyekController::class, 'hapusUraian'])->name('uraian.destroy');
+        Route::resource('/anggaran', AnggranController::class);
+        Route::resource('/waktu_perencanaan', DurasiController::class);
+    });
+
+    Route::group(['middleware' => ['role:draftek'], 'prefix' => '/draftek'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'draftek'])->name('draftek.dashboard');
+        Route::resource('/ded', DesainController::class);
     });
 
     Route::resource('/profile', ProfileController::class);

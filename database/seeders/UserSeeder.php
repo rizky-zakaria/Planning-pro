@@ -40,9 +40,29 @@ class UserSeeder extends Seeder
                 'nomor_telepon' => '+62 813-5528-0700',
                 'alamat' => 'Jalan Prangkonero Kota Gorontalo',
                 'nama_lengkap' => 'Nikma Sari Pakaya',
-                'email' => 'bos@gmail.com',
+                'email' => 'direktur@gmail.com',
                 'password' => Hash::make('123'),
-                'role' => 'bos'
+                'role' => 'direktur'
+            ],
+            [
+                'nama_depan' => 'Ramli',
+                'nama_belakang' => 'Onu',
+                'nomor_telepon' => '+62 813-5528-0700',
+                'alamat' => 'Jalan Prangkonero Kota Gorontalo',
+                'nama_lengkap' => 'Ramli Onu',
+                'email' => 'estimator@gmail.com',
+                'password' => Hash::make('123'),
+                'role' => 'estimator'
+            ],
+            [
+                'nama_depan' => 'Draftek',
+                'nama_belakang' => 'Perusahaan',
+                'nomor_telepon' => '+62 813-5528-0700',
+                'alamat' => 'Jalan Prangkonero Kota Gorontalo',
+                'nama_lengkap' => 'Draftek Perusahaan',
+                'email' => 'draftek@gmail.com',
+                'password' => Hash::make('123'),
+                'role' => 'draftek'
             ],
         ];
 
