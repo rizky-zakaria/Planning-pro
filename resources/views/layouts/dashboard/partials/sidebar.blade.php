@@ -2,10 +2,11 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+            {{-- <i class="fas fa-laugh-wink"></i> --}}
+            <img src="{{ asset('assets/dashboard/img/gambar.jpeg') }}" alt="SIPP" class="w-100">
         </div>
-        <div class="sidebar-brand-text mx-3">SIPP</div>
+        {{-- <div class="sidebar-brand-text mx-3">SIPP</div> --}}
     </a>
 
     <!-- Divider -->
@@ -34,11 +35,11 @@
             <i class="fas fa-fw fa-project-diagram"></i>
             <span>Data Instansi</span></a>
     </li>
-    <li class="nav-item {{ Request::is($user->role . '/proyek') ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Request::is($user->role . '/proyek') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('proyek.index') }}">
             <i class="fas fa-fw fa-project-diagram"></i>
             <span>Data Proyek</span></a>
-    </li>
+    </li> --}}
 
     <hr class="sidebar-divider">
 
@@ -46,21 +47,21 @@
     <div class="sidebar-heading">
         Data Transaksi
     </div>
-    <li class="nav-item {{ Request::is($user->role . '/anggaran') ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Request::is($user->role . '/anggaran') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('anggaran.index') }}">
             <i class="fas fa-fw fa-money-bill-alt"></i>
             <span>Data Anggaran</span></a>
-    </li>
+    </li> --}}
     <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
             <i class="fas fa-fw fa-calendar-alt"></i>
             <span>Waktu Pelaksanaan</span></a>
     </li>
-    <li class="nav-item {{ Request::is($user->role . '/ded') ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Request::is($user->role . '/ded') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('ded.index') }}">
             <i class="fas fa-fw fa-pen-nib"></i>
             <span>Rancangan DED</span></a>
-    </li>
+    </li> --}}
     @endif
 
 
@@ -73,11 +74,11 @@
     </div>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item {{ Request::is($user->role . '/instansi') ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Request::is($user->role . '/instansi') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('instansi.index') }}">
             <i class="fas fa-fw fa-project-diagram"></i>
             <span>Data Instansi</span></a>
-    </li>
+    </li> --}}
     <li class="nav-item {{ Request::is($user->role . '/proyek') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('proyek.index') }}">
             <i class="fas fa-fw fa-project-diagram"></i>
@@ -93,11 +94,11 @@
             <i class="fas fa-fw fa-money-bill-alt"></i>
             <span>Data Anggaran</span></a>
     </li>
-    <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
             <i class="fas fa-fw fa-calendar-alt"></i>
             <span>Waktu Pelaksanaan</span></a>
-    </li>
+    </li> --}}
     @endif
 
     @if ($user->role == 'draftek')
@@ -121,6 +122,24 @@
     <div class="sidebar-heading">
         Laporan
     </div>
+
+    <li class="nav-item {{ Request::is('laporan/instansi') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('laporan.instansi') }}">
+            <i class="fas fa-fw fa-file-invoice-dollar"></i>
+            <span>Laporan Data Instansi</span></a>
+    </li>
+
+    <li class="nav-item {{ Request::is('laporan/ded') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('laporan.ded') }}">
+            <i class="fas fa-fw fa-file-invoice-dollar"></i>
+            <span>Laporan Data DED</span></a>
+    </li>
+
+    <li class="nav-item {{ Request::is('laporan/waktu-pelaksanaan') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('laporan.jadwal') }}">
+            <i class="fas fa-fw fa-file-invoice-dollar"></i>
+            <span>Laporan Jadwal</span></a>
+    </li>
 
     <li class="nav-item {{ Request::is('laporan/proyek') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('laporan.proyek') }}">

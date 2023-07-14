@@ -38,13 +38,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:admin'], 'prefix' => '/admin'], function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
         Route::resource('/instansi', InstansiController::class);
-        Route::resource('/proyek', ProyekController::class);
-        Route::post('/proyek/uraian/{id}', [ProyekController::class, 'tambahUraian'])->name('uraian.store');
-        Route::put('/proyek/uraian/edit/{id}', [ProyekController::class, 'ubahUraian'])->name('uraian.update');
-        Route::delete('/proyek/uraian/delete/{id}', [ProyekController::class, 'hapusUraian'])->name('uraian.destroy');
-        Route::resource('/anggaran', AnggranController::class);
+        // Route::resource('/proyek', ProyekController::class);
+        // Route::post('/proyek/uraian/{id}', [ProyekController::class, 'tambahUraian'])->name('uraian.store');
+        // Route::put('/proyek/uraian/edit/{id}', [ProyekController::class, 'ubahUraian'])->name('uraian.update');
+        // Route::delete('/proyek/uraian/delete/{id}', [ProyekController::class, 'hapusUraian'])->name('uraian.destroy');
+        // Route::resource('/anggaran', AnggranController::class);
         Route::resource('/waktu_perencanaan', DurasiController::class);
-        Route::resource('/ded', DesainController::class);
+        // Route::resource('/ded', DesainController::class);
     });
 
     // Middleware Boss
@@ -54,13 +54,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => ['role:estimator'], 'prefix' => '/estimator'], function () {
         Route::get('/dashboard', [DashboardController::class, 'estimator'])->name('estimator.dashboard');
-        Route::resource('/instansi', InstansiController::class);
+        // Route::resource('/instansi', InstansiController::class);
         Route::resource('/proyek', ProyekController::class);
         Route::post('/proyek/uraian/{id}', [ProyekController::class, 'tambahUraian'])->name('uraian.store');
         Route::put('/proyek/uraian/edit/{id}', [ProyekController::class, 'ubahUraian'])->name('uraian.update');
         Route::delete('/proyek/uraian/delete/{id}', [ProyekController::class, 'hapusUraian'])->name('uraian.destroy');
         Route::resource('/anggaran', AnggranController::class);
-        Route::resource('/waktu_perencanaan', DurasiController::class);
+        // Route::resource('/waktu_perencanaan', DurasiController::class);
     });
 
     Route::group(['middleware' => ['role:draftek'], 'prefix' => '/draftek'], function () {
@@ -74,6 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
     // LAPORAN
     Route::get('/laporan/rab', [LaporanController::class, 'laporanRab'])->name('laporan.rab');
     Route::get('/laporan/proyek', [LaporanController::class, 'laporanProyek'])->name('laporan.proyek');
+    Route::get('/laporan/instansi', [LaporanController::class, 'laporanInstansi'])->name('laporan.instansi');
+    Route::get('/laporan/ded', [LaporanController::class, 'laporanDed'])->name('laporan.ded');
+    Route::get('/laporan/waktu-pelaksanaan', [LaporanController::class, 'laporanWaktuPelaksanaan'])->name('laporan.jadwal');
 
     // CETAK LAPORAN
     Route::get('/laporan/print-proyek', [LaporanController::class, 'cetekLaporanProyek'])->name('print.proyek');

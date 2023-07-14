@@ -73,6 +73,20 @@ class DashboardController extends Controller
 
     public function direktur()
     {
-        return view('dashboard.direktur.dashboard');
+        $proyeks = Proyek::latest()->get();
+        $uraians = Uraian::latest()->get();
+        $anggaranProyek = [];
+        foreach ($proyeks as $proyek) {
+            $ap = 0;
+            foreach ($proyek->uraians as $uraian) {
+                $ap += $uraian['total_biaya'];
+            }
+            $anggaranProyek[] = $ap;
+        }
+        return view('dashboard.direktur.dashboard', compact([
+            'proyeks',
+            'uraians',
+            'anggaranProyek',
+        ]));
     }
 }

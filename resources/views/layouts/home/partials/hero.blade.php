@@ -14,8 +14,15 @@
                     <a class="nav-link btn btn-warning pl-4 pr-4" href="{{ route('login') }}">Login</a>
                     @endguest
                     @auth
-                    <a class="nav-link btn btn-primary pl-4 pr-4"
-                        href="{{ auth()->user()->role == 'admin' ? route('admin.dashboard') : route('bos.dashboard') }}">Dashboard</a>
+                    @if (auth()->user()->role == 'admin')
+                    <a class="nav-link btn btn-primary pl-4 pr-4" href="{{ route('admin.dashboard')}}">Dashboard</a>
+                    @elseif (auth()->user()->role == 'direktur')
+                    <a class="nav-link btn btn-primary pl-4 pr-4" href="{{ route('direktur.dashboard')}}">Dashboard</a>
+                    @elseif (auth()->user()->role == 'estimator')
+                    <a class="nav-link btn btn-primary pl-4 pr-4" href="{{ route('estimator.dashboard')}}">Dashboard</a>
+                    @else
+                    <a class="nav-link btn btn-primary pl-4 pr-4" href="{{ route('draftek.dashboard')}}">Dashboard</a>
+                    @endif
                     @endauth
                 </li>
             </ul>
@@ -25,10 +32,13 @@
     <div class="container fh5co-hero-inner">
         <h1 class="animated fadeIn wow" data-wow-delay="0.4s">Sistem Informasi Perencanaan Proyek
         </h1>
-        <p class="animated fadeIn wow" data-wow-delay="0.67s">Memberikan Solusi Terkait Perencanaan Projek Dan Racangan
-            Anggaran Yang Anda Hadapi </p>
-        <img class="fh5co-hero-smartphone animated fadeInRight wow" data-wow-delay="1s"
-            src="{{ asset('assets/home/img/dashboard.jpeg') }}" alt="Smartphone">
+        {{-- <p class="animated fadeIn wow" data-wow-delay="0.67s">Memberikan Solusi Terkait Perencanaan Projek Dan
+            Racangan
+            Anggaran Yang Anda Hadapi </p> --}}
+        <p class="animated fadeIn wow" data-wow-delay="0.672">CV Arvil Tunggal'29 Enginnering Consultant merupakan
+            perusahaan yang bergerak di bidang jasa konsultasi.</p>
+        <img class="fh5co-hero-smartphone animated fadeInRight wow w-100 h-50" data-wow-delay="1s"
+            src="{{ asset('assets/dashboard/img/gambar.jpeg') }}" alt="Smartphone">
     </div>
 
 

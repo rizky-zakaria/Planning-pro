@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Desain;
+use App\Models\Durasi;
 use App\Models\Instansi;
 use App\Models\Proyek;
 use App\Models\Uraian;
@@ -12,6 +14,26 @@ use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
+    public function laporanInstansi()
+    {
+        $instansis = Instansi::all();
+        return view('dashboard.laporan.tampilan.laporan_instansi', compact('instansis'));
+    }
+
+    public function laporanDed()
+    {
+        $proyeks = Proyek::all();
+        // $desains = Desain::all();
+        return view('dashboard.laporan.tampilan.laporan_ded', compact('proyeks'));
+    }
+
+    public function laporanWaktuPelaksanaan()
+    {
+        $instansis = Instansi::all();
+        $durasis = Durasi::all();
+        return view('dashboard.laporan.tampilan.laporan_jadwal', compact('instansis', 'durasis'));
+    }
+
     public function laporanRab(Request $request)
     {
         $proyeks = Proyek::all();

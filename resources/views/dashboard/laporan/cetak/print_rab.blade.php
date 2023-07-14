@@ -132,6 +132,23 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($instansi->uraians as $uraian)
+                <tr style="background-color: gray">
+                    <td>{{ chr($loop->iteration + 64) }}</td>
+                    <td colspan="4">{{ $uraian->nama_uraian }}</td>
+                    <td>Rp. {{ number_format($uraian->total_biaya, 2, ',', '.') }}</td>
+                </tr>
+                @foreach ($uraian->rabs as $rab)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $rab->nama_item }}</td>
+                    <td>{{ $rab->satuan }}</td>
+                    <td>{{ $rab->volume }}</td>
+                    <td>Rp. {{ number_format($rab->harga_satuan, 2, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($rab->harga_total_per_item, 2, ',', '.') }}</td>
+                </tr>
+                @endforeach
+                @endforeach
                 {{-- @foreach ($instansi->proyeks as $proyek)
                 @php
                 $totalBiaya = 0;
@@ -155,14 +172,6 @@
                 </tr>
                 @endforeach
                 @endforeach --}}
-
-                @foreach ($instansi->proyeks as $proyek)
-                @foreach ($proyek->uraians as $uraian)
-                <tr>
-                    <td></td>
-                </tr>
-                @endforeach
-                @endforeach
             </tbody>
         </table>
     </div>

@@ -28,4 +28,9 @@ class Instansi extends Model
     {
         return $this->hasOne(Durasi::class);
     }
+
+    public function uraians()
+    {
+        return $this->hasManyThrough(Uraian::class, Proyek::class);
+    }
 }

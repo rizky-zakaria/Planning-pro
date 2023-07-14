@@ -23,91 +23,91 @@
                             </option>
                             @endforeach
                         </select>
+                        <button type="submit" class="btn btn-warning mt-4"><i
+                                class="fas fa-filter mr-3"></i>Filter</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-warning mt-4"><i class="fas fa-filter mr-3"></i>Filter</button>
-                </form>
-            </div>
-            <div class="col-md-6 col-12 text-md-right text-center">
-                <a href="{{ route('print.rab') }}?rab-proyek={{ $selectedProyek }}"
-                    class="btn btn-danger mt-4 col-md-2 col-12" target="_blank">
-                    <i class="fas fa-print mr-3"></i>Print
-                </a>
+                <div class="col-md-6 col-12 text-md-right text-center">
+                    <a href="{{ route('print.rab') }}?rab-proyek={{ $selectedProyek }}"
+                        class="btn btn-danger mt-4 col-md-2 col-12" target="_blank">
+                        <i class="fas fa-print mr-3"></i>Print
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Uraian</th>
-                        <th>Nama Item</th>
-                        <th>Satuan</th>
-                        <th>Volume</th>
-                        <th>Harga Satuan</th>
-                        <th>Harga Total</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Uraian</th>
-                        <th>Nama Item</th>
-                        <th>Satuan</th>
-                        <th>Volume</th>
-                        <th>Harga Satuan</th>
-                        <th>Harga Total</th>
-                        <th>Aksi</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @foreach ($proyeks as $proyek)
-                    @foreach ($proyek->uraians as $uraian)
-                    @php
-                    $jumlahBaris = count($uraian->rabs) +1;
-                    @endphp
-                    <tr>
-                        <td rowspan="{{ $jumlahBaris }}">{{ $uraian->id }}</td>
-                        <td rowspan="{{ $jumlahBaris }}">{{ $uraian->nama_uraian }}</td>
-                        @forelse ($uraian->rabs as $anggaran)
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Uraian</th>
+                            <th>Nama Item</th>
+                            <th>Satuan</th>
+                            <th>Volume</th>
+                            <th>Harga Satuan</th>
+                            <th>Harga Total</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Uraian</th>
+                            <th>Nama Item</th>
+                            <th>Satuan</th>
+                            <th>Volume</th>
+                            <th>Harga Satuan</th>
+                            <th>Harga Total</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach ($proyeks as $proyek)
+                        @foreach ($proyek->uraians as $uraian)
+                        @php
+                        $jumlahBaris = count($uraian->rabs) +1;
+                        @endphp
+                        <tr>
+                            <td rowspan="{{ $jumlahBaris }}">{{ $uraian->id }}</td>
+                            <td rowspan="{{ $jumlahBaris }}">{{ $uraian->nama_uraian }}</td>
+                            @forelse ($uraian->rabs as $anggaran)
 
-                    <tr>
-                        <td>{{ $anggaran->nama_item ?? '-'}}</td>
-                        <td>{{ $anggaran->satuan ?? '-'}}</td>
-                        <td>{{ $anggaran->volume ?? '-'}}</td>
-                        <td>Rp. {{ number_format($anggaran->harga_satuan ?? 0, 2, ',', '.') }}</td>
-                        <td>Rp. {{ number_format($anggaran->harga_total_per_item ?? 0, 2, ',', '.') }}</td>
-                        <td>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                    aria-labelledby="dropdownMenuLink" style="">
-                                    <a class="dropdown-item" href="#" data-toggle="modal"
-                                        data-target="#editAnggaran-{{ $anggaran->id }}"><i
-                                            class="fa fa-edit mr-2"></i>Edit</a>
-                                    <a class="dropdown-item" href="#" data-toggle="modal"
-                                        data-target="#hapusAnggaran-{{ $anggaran->id }}"><i
-                                            class="fa fa-trash mr-2"></i>Hapus</a>
+                        <tr>
+                            <td>{{ $anggaran->nama_item ?? '-'}}</td>
+                            <td>{{ $anggaran->satuan ?? '-'}}</td>
+                            <td>{{ $anggaran->volume ?? '-'}}</td>
+                            <td>Rp. {{ number_format($anggaran->harga_satuan ?? 0, 2, ',', '.') }}</td>
+                            <td>Rp. {{ number_format($anggaran->harga_total_per_item ?? 0, 2, ',', '.') }}</td>
+                            <td>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                        aria-labelledby="dropdownMenuLink" style="">
+                                        <a class="dropdown-item" href="#" data-toggle="modal"
+                                            data-target="#editAnggaran-{{ $anggaran->id }}"><i
+                                                class="fa fa-edit mr-2"></i>Edit</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal"
+                                            data-target="#hapusAnggaran-{{ $anggaran->id }}"><i
+                                                class="fa fa-trash mr-2"></i>Hapus</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    @empty
-                    <td colspan="9" class="text-center">Belum Ada Data</td>
-                    @endforelse
-                    </tr>
-                    @endforeach
-                    @endforeach
-                </tbody>
-            </table>
+                            </td>
+                        </tr>
+                        @empty
+                        <td colspan="9" class="text-center">Belum Ada Data</td>
+                        @endforelse
+                        </tr>
+                        @endforeach
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 @endsection
