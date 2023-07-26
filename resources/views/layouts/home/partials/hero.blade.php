@@ -35,10 +35,18 @@
         {{-- <p class="animated fadeIn wow" data-wow-delay="0.67s">Memberikan Solusi Terkait Perencanaan Projek Dan
             Racangan
             Anggaran Yang Anda Hadapi </p> --}}
-        <p class="animated fadeIn wow" data-wow-delay="0.672">CV Arvil Tunggal'29 Enginnering Consultant merupakan
-            perusahaan yang bergerak di bidang jasa konsultasi.</p>
-        <img class="fh5co-hero-smartphone animated fadeInRight wow w-100 h-50" data-wow-delay="1s"
-            src="{{ asset('assets/dashboard/img/gambar.jpeg') }}" alt="Smartphone">
+        <p class="animated fadeIn wow text-nowrap" data-wow-delay="0.672">CV Arvil Tunggal'29 Enginnering Consultant
+            merupakan salah
+            satu dari sekian banyak perusahaan yang bergerak di bidang jasa konsultasi.
+            Didirikan dengan </p>
+        <p class="text-nowrap"> untuk memberikan pelayanan jasa kepada konsumen yang membutuhkan jasa konsultan di
+            bidang kontruksi,
+            arsitek, pengembangan kota & wilayah serta tata lingkungan. </p>
+
+        <img class="fh5co-hero-smartphone animated fadeInRight wow" data-wow-delay="1s"
+            src="{{ asset('assets/home/img/dashboard.jpeg') }}" alt="Smartphone">
+        {{-- <img class="fh5co-hero-smartphone animated fadeInRight wow w-100 h-50" data-wow-delay="1s"
+            src="{{ asset('assets/dashboard/img/gambar.jpeg') }}" alt="Smartphone"> --}}
     </div>
 
 
