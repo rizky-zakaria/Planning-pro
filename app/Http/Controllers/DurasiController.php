@@ -25,7 +25,7 @@ class DurasiController extends Controller
             'lama_pengerjaan' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
-            'dokumen_spmk' => 'required',
+            'dokumen_spmk' => 'required|mimes:pdf',
         ]);
 
         $durasi = new Durasi();
@@ -56,6 +56,7 @@ class DurasiController extends Controller
             'lama_pengerjaan' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
+            'dokumen_spmk' => 'mimes:pdf',
         ]);
 
         $durasi = Durasi::findOrFail($id);

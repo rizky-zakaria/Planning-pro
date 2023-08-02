@@ -18,14 +18,14 @@ class InstansiController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validasi = $this->validate($request, [
             'nama_instansi' => 'required',
             'program_instansi' => 'required',
             'kegiatan_instansi' => 'required',
             'lokasi_instansi' => 'required',
             'tujuan_proyek' => 'required',
             'tahun_anggaran' => 'required',
-            'dokumen_spk' => 'required',
+            'dokumen_spk' => 'required|mimes:pdf',
         ]);
 
         $instansi = new Instansi();
@@ -59,6 +59,7 @@ class InstansiController extends Controller
             'lokasi_instansi' => 'required',
             'tujuan_proyek' => 'required',
             'tahun_anggaran' => 'required',
+            'dokumen_spk' => 'mimes:pdf',
         ]);
 
         if ($request->file('dokumen_spk')) {

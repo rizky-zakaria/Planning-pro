@@ -17,12 +17,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'nama' => 'Admin Kantor',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => Hash::make('123'),
-        //     'role' => 'admin'
-        // ]);
         $users = [
             [
                 'nama_depan' => 'Aslan',
@@ -59,8 +53,8 @@ class UserSeeder extends Seeder
                 'nama_belakang' => 'Perusahaan',
                 'nomor_telepon' => '+62 813-5528-0700',
                 'alamat' => 'Jalan Prangkonero Kota Gorontalo',
-                'nama_lengkap' => 'Draftek Perusahaan',
-                'email' => 'draftek@gmail.com',
+                'nama_lengkap' => 'Drafter Perusahaan',
+                'email' => 'drafter@gmail.com',
                 'password' => Hash::make('123'),
                 'role' => 'draftek'
             ],

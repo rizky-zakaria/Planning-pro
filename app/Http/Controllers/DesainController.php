@@ -22,7 +22,7 @@ class DesainController extends Controller
     {
         $request->validate([
             'proyek' => 'required',
-            'ded' => 'required|max:5120',
+            'ded' => 'required|max:5120|mimes:pdf,png,jpeg,jpg',
         ]);
 
         $file = $request->file('ded');
