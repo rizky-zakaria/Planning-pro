@@ -64,7 +64,8 @@
                     data-aos="fade-up">
                     <div>
                         <h1>CV. Arvil Tunggal Engineering Consultant</h1>
-                        <p>Merupakan salah satu dari sekian banyak perusahaan yang bergerak dibidang jasa konsultasi.
+                        <p style="text-align: justify">Merupakan salah satu dari sekian banyak perusahaan yang bergerak
+                            dibidang jasa konsultasi.
                             Perusahaan ini didirikan oleh beberapa engineer yang mempunyai komitmen, loyalitas, dan
                             dedikasi yang tinggi terhadap bidang keilmuan maupun non-teknik. Perusahaan didirikan dengan
                             tujuan untuk pelayanan jasa kepada konsumen yang membutuhkan jasa konsultan dibidang
