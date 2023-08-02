@@ -49,8 +49,9 @@ class LaporanController extends Controller
 
     public function cetakLaporanRab(Request $request)
     {
-        $selectedProyek = $request->input('proyek');
-
+        // $selectedProyek = $request->input('proyek');
+        $selectedProyek = $request->query('rab-proyek');
+        // dd($selectedProyek);
         // Lakukan logika filtering sesuai dengan nilai $selectedProyek
         if ($selectedProyek && $selectedProyek !== 'all') {
             $proyeks = Proyek::where('id', $selectedProyek)->first();

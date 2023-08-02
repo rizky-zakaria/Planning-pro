@@ -4,7 +4,7 @@
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
             {{-- <i class="fas fa-laugh-wink"></i> --}}
-            <img src="{{ asset('assets/dashboard/img/gambar.jpeg') }}" alt="SIPP" class="w-100">
+            <img src="{{ asset('assets/dashboard/img/gambar.png') }}" alt="SIPP" class="w-100">
         </div>
         {{-- <div class="sidebar-brand-text mx-3">SIPP</div> --}}
     </a>
@@ -22,42 +22,42 @@
 
 
     @if ($user->role == 'admin')
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Data Master
-    </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Data Master
+        </div>
 
-    <!-- Nav Item - Charts -->
-    <li class="nav-item {{ Request::is($user->role . '/instansi') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('instansi.index') }}">
-            <i class="fas fa-fw fa-project-diagram"></i>
-            <span>Data Instansi</span></a>
-    </li>
-    {{-- <li class="nav-item {{ Request::is($user->role . '/proyek') ? 'active' : '' }}">
+        <!-- Nav Item - Charts -->
+        <li class="nav-item {{ Request::is($user->role . '/instansi') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('instansi.index') }}">
+                <i class="fas fa-fw fa-project-diagram"></i>
+                <span>Data Instansi</span></a>
+        </li>
+        {{-- <li class="nav-item {{ Request::is($user->role . '/proyek') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('proyek.index') }}">
             <i class="fas fa-fw fa-project-diagram"></i>
             <span>Data Proyek</span></a>
     </li> --}}
 
-    <hr class="sidebar-divider">
+        <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Data Transaksi
-    </div>
-    {{-- <li class="nav-item {{ Request::is($user->role . '/anggaran') ? 'active' : '' }}">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Data Transaksi
+        </div>
+        {{-- <li class="nav-item {{ Request::is($user->role . '/anggaran') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('anggaran.index') }}">
             <i class="fas fa-fw fa-money-bill-alt"></i>
             <span>Data Anggaran</span></a>
     </li> --}}
-    <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
-            <i class="fas fa-fw fa-calendar-alt"></i>
-            <span>Waktu Pelaksanaan</span></a>
-    </li>
-    {{-- <li class="nav-item {{ Request::is($user->role . '/ded') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
+                <i class="fas fa-fw fa-calendar-alt"></i>
+                <span>Waktu Pelaksanaan</span></a>
+        </li>
+        {{-- <li class="nav-item {{ Request::is($user->role . '/ded') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('ded.index') }}">
             <i class="fas fa-fw fa-pen-nib"></i>
             <span>Rancangan DED</span></a>
@@ -66,35 +66,35 @@
 
 
     @if ($user->role == 'estimator')
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Data Master
-    </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Data Master
+        </div>
 
-    <!-- Nav Item - Charts -->
-    {{-- <li class="nav-item {{ Request::is($user->role . '/instansi') ? 'active' : '' }}">
+        <!-- Nav Item - Charts -->
+        {{-- <li class="nav-item {{ Request::is($user->role . '/instansi') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('instansi.index') }}">
             <i class="fas fa-fw fa-project-diagram"></i>
             <span>Data Instansi</span></a>
     </li> --}}
-    <li class="nav-item {{ Request::is($user->role . '/proyek') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('proyek.index') }}">
-            <i class="fas fa-fw fa-project-diagram"></i>
-            <span>Data Proyek</span></a>
-    </li>
+        <li class="nav-item {{ Request::is($user->role . '/proyek') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('proyek.index') }}">
+                <i class="fas fa-fw fa-project-diagram"></i>
+                <span>Data Proyek</span></a>
+        </li>
 
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Data Transaksi
-    </div>
-    <li class="nav-item {{ Request::is($user->role . '/anggaran') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('anggaran.index') }}">
-            <i class="fas fa-fw fa-money-bill-alt"></i>
-            <span>Data Anggaran</span></a>
-    </li>
-    {{-- <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Data Transaksi
+        </div>
+        <li class="nav-item {{ Request::is($user->role . '/anggaran') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('anggaran.index') }}">
+                <i class="fas fa-fw fa-money-bill-alt"></i>
+                <span>Data Anggaran</span></a>
+        </li>
+        {{-- <li class="nav-item {{ Request::is($user->role . '/waktu_perencanaan') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('waktu_perencanaan.index') }}">
             <i class="fas fa-fw fa-calendar-alt"></i>
             <span>Waktu Pelaksanaan</span></a>
@@ -102,17 +102,17 @@
     @endif
 
     @if ($user->role == 'draftek')
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-    <div class="sidebar-heading">
-        Data Transaksi
-    </div>
-    <li class="nav-item {{ Request::is($user->role . '/ded') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('ded.index') }}">
-            <i class="fas fa-fw fa-pen-nib"></i>
-            <span>Rancangan DED</span></a>
-    </li>
+        <div class="sidebar-heading">
+            Data Transaksi
+        </div>
+        <li class="nav-item {{ Request::is($user->role . '/ded') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('ded.index') }}">
+                <i class="fas fa-fw fa-pen-nib"></i>
+                <span>Rancangan DED</span></a>
+        </li>
     @endif
 
 
