@@ -19,6 +19,7 @@ class ProyekSeeder extends Seeder
             [
                 'instansi_id' => 1,
                 'nama_proyek' => 'PEKERJAAN GALERI SOUVENIR',
+                'user_id' => 1
             ],
         ];
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('instansi_id')->constrained();
             $table->string('nama_proyek');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

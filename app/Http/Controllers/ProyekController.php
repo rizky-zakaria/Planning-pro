@@ -8,6 +8,7 @@ use App\Models\Proyek;
 use App\Models\Uraian;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProyekController extends Controller
@@ -45,6 +46,7 @@ class ProyekController extends Controller
         $proyek = new Proyek();
         $proyek->instansi_id = $request->instansi_id;
         $proyek->nama_proyek = $request->nama_proyek;
+        $proyek->user_id = Auth::user()->id;
         $proyek->save();
 
         foreach ($request->uraian as $data) {
