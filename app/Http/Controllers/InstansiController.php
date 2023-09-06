@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Instansi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 
@@ -18,7 +19,16 @@ class InstansiController extends Controller
 
     public function store(Request $request)
     {
-        $validasi = $this->validate($request, [
+        // $validasi = $this->validate($request, [
+        //     'nama_instansi' => 'required',
+        //     'program_instansi' => 'required',
+        //     'kegiatan_instansi' => 'required',
+        //     'lokasi_instansi' => 'required',
+        //     'tujuan_proyek' => 'required',
+        //     'tahun_anggaran' => 'required',
+        //     'dokumen_spk' => 'required|mimes:pdf',
+        // ]);
+        $rules = [
             'nama_instansi' => 'required',
             'program_instansi' => 'required',
             'kegiatan_instansi' => 'required',
@@ -26,7 +36,20 @@ class InstansiController extends Controller
             'tujuan_proyek' => 'required',
             'tahun_anggaran' => 'required',
             'dokumen_spk' => 'required|mimes:pdf',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $instansi = new Instansi();
         $instansi->nama_instansi = $request->nama_instansi;
@@ -51,8 +74,7 @@ class InstansiController extends Controller
 
     public function update(Request $request, Instansi $instansi)
     {
-        // dd($request->all());
-        $this->validate($request, [
+        $rules = [
             'nama_instansi' => 'required',
             'program_instansi' => 'required',
             'kegiatan_instansi' => 'required',
@@ -60,7 +82,20 @@ class InstansiController extends Controller
             'tujuan_proyek' => 'required',
             'tahun_anggaran' => 'required',
             'dokumen_spk' => 'mimes:pdf',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         if ($request->file('dokumen_spk')) {
             // jika ada maka hapus ddokumen lama

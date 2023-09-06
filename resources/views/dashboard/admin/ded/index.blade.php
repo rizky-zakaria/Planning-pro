@@ -34,11 +34,19 @@
                             @method('POST')
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="namaProyek">Proyek</label>
-                                    <select name="proyek" id="namaProyek" class="form-control">
-                                        @foreach ($proyeks as $proyek)
-                                            <option value="{{ $proyek->id }}">{{ $proyek->nama_proyek }}</option>
+                                    <label for="namaInstansi">Nama Instansi</label>
+                                    <select name="instansi" id="namaInstansi" class="form-control"
+                                        onchange="pilihInstansi()">
+                                        <option selected disabled>Pilih Instansi</option>
+                                        @foreach ($instansi as $ins)
+                                            <option value="{{ $ins->id }}">{{ $ins->nama_instansi }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3" id="proyeks">
+                                    <label for="namaProyek" id="labelProyek">Nama Proyek</label>
+                                    <select name="proyek" id="proyek" class="form-control">
+                                        <option selected disabled>Pilih Proyek</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -76,6 +84,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Nama Instansi</th>
                                 <th>Nama Proyek</th>
                                 <th>Gambar Desain</th>
                                 <th style="width: 20px">Aksi</th>
@@ -83,6 +92,7 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>Nama Instansi</th>
                                 <th>Nama Proyek</th>
                                 <th>Gambar Desain</th>
                                 <th>Aksi</th>
@@ -95,6 +105,7 @@
                                 @endphp
                                 @if ($proyek->desain->isNotEmpty())
                                     <tr>
+                                        <td rowspan="{{ $baris }}">{{ $proyek->nama_instansi }}</td>
                                         <td rowspan="{{ $baris }}">{{ $proyek->nama_proyek }}</td>
                                     </tr>
                                 @endif
@@ -177,7 +188,8 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Yakin ingin menghapus
+                                                        <h5 class="modal-title" id="exampleModalLabel">Yakin ingin
+                                                            menghapus
                                                             desain
                                                             perancangan{{ $desain->proyek->nama_proyek }}?</h5>
                                                         <button class="close" type="button" data-dismiss="modal"
@@ -231,4 +243,43 @@
             display: none;
         }
     </style>
+@endpush
+@push('script')
+    <script>
+        function pilihInstansi() {
+            var instansi = document.getElementById('namaInstansi');
+            var id = instansi.value;
+
+            console.log(id);
+            hapusProyek();
+            $.ajax({
+                type: "GET",
+                url: "ded/proyek/" + id,
+                data: "data",
+                dataType: "json",
+                success: function(response) {
+                    if (response.status === true) {
+                        $(`
+                            <label for="proyek" id="labelProyek">Proyek</label>
+                            <select name="proyek" id="proyek" class="form-control" required>
+                            <option selected disabled>Pilih Proyek</option>
+                            </select>
+                        `).appendTo("#proyeks");
+                        var data = response.data
+                        console.log(data);
+                        data.forEach(element => {
+                            $(`
+                            <option value="${element.id}">${element.nama_proyek}</option>
+                            `).appendTo("#proyek");
+                        });
+                    }
+                }
+            });
+        }
+
+        function hapusProyek() {
+            $("#proyek").remove();
+            $("#labelProyek").remove();
+        }
+    </script>
 @endpush

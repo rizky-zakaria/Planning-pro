@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:draftek'], 'prefix' => '/draftek'], function () {
         Route::get('/dashboard', [DashboardController::class, 'draftek'])->name('draftek.dashboard');
         Route::resource('/ded', DesainController::class);
+        Route::get('ded/proyek/{id}', [DesainController::class, 'getProyek']);
     });
 
     Route::resource('/profile', ProfileController::class);

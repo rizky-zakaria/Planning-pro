@@ -9,6 +9,7 @@ use App\Models\Uraian;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProyekController extends Controller
@@ -37,11 +38,25 @@ class ProyekController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $rules = [
             'instansi_id' => 'required',
             'nama_proyek' => 'required',
             'uraian' => 'required',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         $proyek = new Proyek();
         $proyek->instansi_id = $request->instansi_id;
@@ -77,9 +92,24 @@ class ProyekController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+
+        $rules = [
             'nama_proyek' => 'required',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         $proyek = Proyek::findOrFail($id);
         $proyek->update([
@@ -116,9 +146,24 @@ class ProyekController extends Controller
 
     public function ubahUraian(Request $request, $id)
     {
-        $this->validate($request, [
+
+        $rules = [
             'nama_uraian' => 'required',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         $uraian = Uraian::findOrFail($id);
         $uraian->update([

@@ -72,84 +72,84 @@
 <body style="font-size: 12px">
 
     @foreach ($instansis as $instansi)
-    <div class="page">
-        <table width="100%">
-            <tr>
-                <td style="text-align: center; background-color:brown; color:white">
-                    <p style="font-size: 1.2em"><b>REKAPITULASI</b></p>
-                    <hr width="30%">
-                    <h4>ENGINEERING ESTIMATE (EE)</h4>
-                </td>
-            </tr>
-        </table>
-        <br>
-
-        <div class="page-break"></div>
-
-        <table class="instansi">
-            <tr>
-                <td>INSTANSI</td>
-                <td>:</td>
-                <td>{{ $instansi->nama_instansi }}</td>
-            </tr>
-            <tr>
-                <td>PROGRAM</td>
-                <td>:</td>
-                <td>{{ $instansi->program_instansi }}</td>
-            </tr>
-            <tr>
-                <td>KEGIATAN</td>
-                <td>:</td>
-                <td>{{ $instansi->kegiatan_instansi }}</td>
-            </tr>
-            <tr>
-                <td>PEKERJAAN</td>
-                <td>:</td>
-                <td>{{ $instansi->tujuan_proyek }}</td>
-            </tr>
-            <tr>
-                <td>LOKASI</td>
-                <td>:</td>
-                <td>{{ $instansi->lokasi_instansi }}</td>
-            </tr>
-            <tr>
-                <td>TAHUN ANGGARAN</td>
-                <td>:</td>
-                <td>{{ $instansi->tahun_anggaran }}</td>
-            </tr>
-        </table>
-
-        <table width="100%" border="1" cellpadding="10" cellspacing="0"
-            style="margin-top: 10px; font-weight:bold; font-size: 0.8em;">
-            <thead style="background-color: brown; color: white">
+        <div class="page">
+            <table width="100%">
                 <tr>
-                    <th width="5%">NO</th>
-                    <th>RINCIAN PEKERJAAN</th>
-                    <th>SATUAN</th>
-                    <th>VOLUME</th>
-                    <th>HARGA SATUAN (RP)</th>
-                    <th>JUMLAH HARGA (RP)</th>
+                    <td style="text-align: center; background-color:brown; color:white">
+                        <p style="font-size: 1.2em"><b>REKAPITULASI</b></p>
+                        <hr width="30%">
+                        <h4>ENGINEERING ESTIMATE (EE)</h4>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($instansi->uraians as $uraian)
-                <tr style="background-color: gray">
-                    <td>{{ chr($loop->iteration + 64) }}</td>
-                    <td colspan="4">{{ $uraian->nama_uraian }}</td>
-                    <td>Rp. {{ number_format($uraian->total_biaya, 2, ',', '.') }}</td>
-                </tr>
-                @foreach ($uraian->rabs as $rab)
+            </table>
+            <br>
+
+            <div class="page-break"></div>
+
+            <table class="instansi">
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $rab->nama_item }}</td>
-                    <td>{{ $rab->satuan }}</td>
-                    <td>{{ $rab->volume }}</td>
-                    <td>Rp. {{ number_format($rab->harga_satuan, 2, ',', '.') }}</td>
-                    <td>Rp. {{ number_format($rab->harga_total_per_item, 2, ',', '.') }}</td>
+                    <td>INSTANSI</td>
+                    <td>:</td>
+                    <td>{{ $instansi->nama_instansi }}</td>
                 </tr>
-                @endforeach
-                @endforeach
-                {{-- @foreach ($instansi->proyeks as $proyek)
+                <tr>
+                    <td>PROGRAM</td>
+                    <td>:</td>
+                    <td>{{ $instansi->program_instansi }}</td>
+                </tr>
+                <tr>
+                    <td>KEGIATAN</td>
+                    <td>:</td>
+                    <td>{{ $instansi->kegiatan_instansi }}</td>
+                </tr>
+                <tr>
+                    <td>PEKERJAAN</td>
+                    <td>:</td>
+                    <td>{{ $instansi->tujuan_proyek }}</td>
+                </tr>
+                <tr>
+                    <td>LOKASI</td>
+                    <td>:</td>
+                    <td>{{ $instansi->lokasi_instansi }}</td>
+                </tr>
+                <tr>
+                    <td>TAHUN ANGGARAN</td>
+                    <td>:</td>
+                    <td>{{ $instansi->tahun_anggaran }}</td>
+                </tr>
+            </table>
+
+            <table width="100%" border="1" cellpadding="10" cellspacing="0"
+                style="margin-top: 10px; font-weight:bold; font-size: 0.8em;">
+                <thead style="background-color: brown; color: white">
+                    <tr>
+                        <th width="5%">NO</th>
+                        <th>RINCIAN PEKERJAAN</th>
+                        <th>SATUAN</th>
+                        <th>VOLUME</th>
+                        <th>HARGA SATUAN (RP)</th>
+                        <th>JUMLAH HARGA (RP)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($instansi->uraians as $uraian)
+                        <tr style="background-color: gray">
+                            <td>{{ chr($loop->iteration + 64) }}</td>
+                            <td colspan="4">{{ $uraian->nama_uraian }}</td>
+                            <td>Rp. {{ number_format($uraian->total_biaya, 2, ',', '.') }}</td>
+                        </tr>
+                        @foreach ($uraian->rabs as $rab)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $rab->nama_item }}</td>
+                                <td>{{ $rab->satuan }}</td>
+                                <td>{{ $rab->volume }}</td>
+                                <td>Rp. {{ number_format($rab->harga_satuan, 2, ',', '.') }}</td>
+                                <td>Rp. {{ number_format($rab->harga_total_per_item, 2, ',', '.') }}</td>
+                            </tr>
+                        @endforeach
+                    @endforeach
+                    {{-- @foreach ($instansi->proyeks as $proyek)
                 @php
                 $totalBiaya = 0;
                 foreach ($proyek->uraians as $uraian) {
@@ -172,11 +172,14 @@
                 </tr>
                 @endforeach
                 @endforeach --}}
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+            <br><br><br>
+            Dicetak Oleh: {{ Auth::user()->nama_lengkap }}
+        </div>
+        <div style="margin-left: 30px">
+        </div>
     @endforeach
-
 </body>
 
 </html>

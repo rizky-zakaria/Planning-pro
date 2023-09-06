@@ -6,6 +6,7 @@ use App\Models\Proyek;
 use App\Models\Rab;
 use App\Models\Uraian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggranController extends Controller
@@ -31,13 +32,27 @@ class AnggranController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $rules = [
             'uraian_id' => 'required',
             'nama_item' => 'required',
             'harga_satuan' => 'required',
             'volume' => 'required',
             'satuan' => 'required',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         $anggaran = new Rab();
         $anggaran->uraian_id = $request->uraian_id;
@@ -59,13 +74,27 @@ class AnggranController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $rules = [
             'uraian_id' => 'required',
             'nama_item' => 'required',
             'harga_satuan' => 'required',
             'volume' => 'required',
             'satuan' => 'required',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         // get data anggaran yang akan di ubah
         $anggaran = Rab::findOrFail($id);

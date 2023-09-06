@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 
@@ -20,9 +21,23 @@ class ProfileController extends Controller
 
     public function updatePhoto(Request $request)
     {
-        $request->validate([
+        $rules = [
             'photo' => 'required|image|max:5120|mimes:png,jpeg,jpg',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         $photo = $request->file('photo');
         $filename = time() . '.' . $photo->getClientOriginalExtension();

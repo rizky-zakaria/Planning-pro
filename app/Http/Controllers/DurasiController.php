@@ -7,6 +7,7 @@ use App\Models\Instansi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DurasiController extends Controller
@@ -20,13 +21,26 @@ class DurasiController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $rules = [
             'instansi' => 'required',
             'lama_pengerjaan' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
             'dokumen_spmk' => 'required|mimes:pdf',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $durasi = new Durasi();
         $durasi->instansi_id = $request->instansi;
@@ -51,13 +65,26 @@ class DurasiController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $rules = [
             'instansi' => 'required',
             'lama_pengerjaan' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
             'dokumen_spmk' => 'mimes:pdf',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $durasi = Durasi::findOrFail($id);
         // cek jika terdapat dokument dokumen baru

@@ -56,7 +56,10 @@
             }
 
             .page {
-                margin: 0;
+                margin-top: 0;
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 0;
                 border: initial;
                 border-radius: initial;
                 width: initial;
@@ -72,109 +75,110 @@
 <body style="font-size: 12px">
 
     @foreach ($instansis as $instansi)
-    <div class="page">
-        <table width="100%">
-            <tr>
-                <td style="text-align: center; background-color:brown; color:white">
-                    <p style="font-size: 1.2em"><b>REKAPITULASI</b></p>
-                    <hr width="30%">
-                    <h4>ENGINEERING ESTIMATE (EE)</h4>
-                </td>
-            </tr>
-        </table>
-        <br>
+        <div class="page">
+            <table width="100%">
+                <tr>
+                    <td style="text-align: center; background-color:brown; color:white">
+                        <p style="font-size: 1.2em"><b>REKAPITULASI</b></p>
+                        <hr width="30%">
+                        <h4>ENGINEERING ESTIMATE (EE)</h4>
+                    </td>
+                </tr>
+            </table>
+            <br>
 
-        <div class="page-break"></div>
+            <div class="page-break"></div>
 
-        <table class="instansi">
-            <tr>
-                <td>INSTANSI</td>
-                <td>:</td>
-                <td>{{ $instansi->nama_instansi }}</td>
-            </tr>
-            <tr>
-                <td>PROGRAM</td>
-                <td>:</td>
-                <td>{{ $instansi->program_instansi }}</td>
-            </tr>
-            <tr>
-                <td>KEGIATAN</td>
-                <td>:</td>
-                <td>{{ $instansi->kegiatan_instansi }}</td>
-            </tr>
-            <tr>
-                <td>PEKERJAAN</td>
-                <td>:</td>
-                <td>{{ $instansi->tujuan_proyek }}</td>
-            </tr>
-            <tr>
-                <td>LOKASI</td>
-                <td>:</td>
-                <td>{{ $instansi->lokasi_instansi }}</td>
-            </tr>
-            <tr>
-                <td>TAHUN ANGGARAN</td>
-                <td>:</td>
-                <td>{{ $instansi->tahun_anggaran }}</td>
-            </tr>
-        </table>
+            <table class="instansi">
+                <tr>
+                    <td>INSTANSI</td>
+                    <td>:</td>
+                    <td>{{ $instansi->nama_instansi }}</td>
+                </tr>
+                <tr>
+                    <td>PROGRAM</td>
+                    <td>:</td>
+                    <td>{{ $instansi->program_instansi }}</td>
+                </tr>
+                <tr>
+                    <td>KEGIATAN</td>
+                    <td>:</td>
+                    <td>{{ $instansi->kegiatan_instansi }}</td>
+                </tr>
+                <tr>
+                    <td>PEKERJAAN</td>
+                    <td>:</td>
+                    <td>{{ $instansi->tujuan_proyek }}</td>
+                </tr>
+                <tr>
+                    <td>LOKASI</td>
+                    <td>:</td>
+                    <td>{{ $instansi->lokasi_instansi }}</td>
+                </tr>
+                <tr>
+                    <td>TAHUN ANGGARAN</td>
+                    <td>:</td>
+                    <td>{{ $instansi->tahun_anggaran }}</td>
+                </tr>
+            </table>
 
-        <table width="100%" border="1" cellpadding="10" cellspacing="0"
-            style="margin-top: 10px; font-weight:bold; font-size: 0.8em;">
-            <thead style="background-color: brown; color: white">
-                <tr>
-                    <th width="5%">NO</th>
-                    <th width="65%">URAIAN PEKERJAAN</th>
-                    <th width="30%">HARGA SATUAN</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($instansi->proyeks as $proyek)
-                @php
-                $totalBiaya = 0;
-                foreach ($proyek->uraians as $uraian) {
-                $totalBiaya += $uraian['total_biaya'];
-                }
-                $pajak = ($totalBiaya * 11) / 100;
-                $jumlahTotal = $totalBiaya + $pajak;
-                $pembulatan = round($jumlahTotal, 0);
-                @endphp
-                <tr style="background-color: grey; color:white">
-                    <td></td>
-                    <td>{{ $proyek->nama_proyek }}</td>
-                    <td>Rp. {{ number_format($totalBiaya, 2, ',', '.') }}</td>
-                </tr>
-                @foreach ($proyek->uraians as $uraian)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $uraian->nama_uraian }}</td>
-                    <td>Rp. {{ number_format($uraian->total_biaya ?? 0, 2, ',', '.') }}</td>
-                </tr>
-                @endforeach
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr style="background-color: brown; color: white">
-                    <td colspan="2" style="text-align: center">JUMLAH</td>
-                    <td>Rp. {{ number_format($totalBiaya, 2, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: right">PAJAK PERTAMBAHAN NILAI (PPN) 11%</td>
-                    <td>Rp. {{ number_format($pajak, 2, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: right">JUMLAH TOTAL</td>
-                    <td>Rp. {{ number_format($jumlahTotal, 2, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: right">DIBULATKAN</td>
-                    <td>Rp. {{ number_format($pembulatan, 0, ',', '.') }}</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+            <table width="100%" border="1" cellpadding="10" cellspacing="0"
+                style="margin-top: 10px; font-weight:bold; font-size: 0.8em;">
+                <thead style="background-color: brown; color: white">
+                    <tr>
+                        <th width="5%">NO</th>
+                        <th width="65%">URAIAN PEKERJAAN</th>
+                        <th width="30%">HARGA SATUAN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($instansi->proyeks as $proyek)
+                        @php
+                            $totalBiaya = 0;
+                            foreach ($proyek->uraians as $uraian) {
+                                $totalBiaya += $uraian['total_biaya'];
+                            }
+                            $pajak = ($totalBiaya * 11) / 100;
+                            $jumlahTotal = $totalBiaya + $pajak;
+                            $pembulatan = round($jumlahTotal, 0);
+                        @endphp
+                        <tr style="background-color: grey; color:white">
+                            <td></td>
+                            <td>{{ $proyek->nama_proyek }}</td>
+                            <td>Rp. {{ number_format($totalBiaya, 2, ',', '.') }}</td>
+                        </tr>
+                        @foreach ($proyek->uraians as $uraian)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $uraian->nama_uraian }}</td>
+                                <td>Rp. {{ number_format($uraian->total_biaya ?? 0, 2, ',', '.') }}</td>
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr style="background-color: brown; color: white">
+                        <td colspan="2" style="text-align: center">JUMLAH</td>
+                        <td>Rp. {{ number_format($totalBiaya, 2, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right">PAJAK PERTAMBAHAN NILAI (PPN) 11%</td>
+                        <td>Rp. {{ number_format($pajak, 2, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right">JUMLAH TOTAL</td>
+                        <td>Rp. {{ number_format($jumlahTotal, 2, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right">DIBULATKAN</td>
+                        <td>Rp. {{ number_format($pembulatan, 0, ',', '.') }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <br><br>
+            Dicetak Oleh: {{ Auth::user()->nama_lengkap }}
+        </div>
     @endforeach
-
 </body>
 
 </html>

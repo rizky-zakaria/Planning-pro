@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desain;
+use App\Models\Instansi;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 
@@ -13,17 +15,51 @@ class DesainController extends Controller
 {
     public function index()
     {
-        $proyeks = Proyek::all();
+        $proyeks = Proyek::join('instansis', 'instansis.id', '=', 'proyeks.instansi_id')
+            ->get(['proyeks.*', 'instansis.nama_instansi']);
         $desains = Desain::all();
-        return view('dashboard.admin.ded.index', compact('desains', 'proyeks'));
+        $instansi = Instansi::all();
+        return view('dashboard.admin.ded.index', compact('desains', 'proyeks', 'instansi'));
+    }
+
+    public function getProyek($id)
+    {
+        $proyek = Proyek::where('instansi_id', $id)->get();
+        if ($proyek) {
+            return response()->json([
+                'status' => true,
+                'message' => 'berhasil mendapatkan data',
+                'data' => $proyek
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'gagal mendapatkan data'
+            ]);
+        }
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
+            'instansi' => 'required',
             'proyek' => 'required',
             'ded' => 'required|max:5120|mimes:pdf,png,jpeg,jpg',
-        ]);
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules
+        );
+
+        if ($validator->fails()) {
+            toast('Data yang anda masukan bermasalah', 'warning');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         $file = $request->file('ded');
         $filename = time() . '.' . $file->getClientOriginalExtension();
