@@ -44,9 +44,9 @@
                                     </select>
                                 </div>
                                 <div class="mb-3" id="proyeks">
-                                    <label for="namaProyek" id="labelProyek">Nama Proyek</label>
+                                    <label for="namaProyek" id="labelProyek">Sub Pekerjaan</label>
                                     <select name="proyek" id="proyek" class="form-control">
-                                        <option selected disabled>Pilih Proyek</option>
+                                        <option selected disabled>Pilih Sub Pekerjaan</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -85,7 +85,7 @@
                         <thead>
                             <tr>
                                 <th>Nama Instansi</th>
-                                <th>Nama Proyek</th>
+                                <th>Sub Pekerjaan</th>
                                 <th>Gambar Desain</th>
                                 <th style="width: 20px">Aksi</th>
                             </tr>
