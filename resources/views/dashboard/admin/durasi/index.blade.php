@@ -257,7 +257,7 @@
             </div>
             <div class="mb-3" id="col-tgl-end">
                 <label for="tanggalSelesai">Tanggal Selesai:</label>
-                <input type="date" class="form-control"
+                <input type="text" class="form-control"
                     id="tanggalSelesai" disabled required>
                 <input type="hidden" class="form-control @error('tanggal_selesai')
                                         is-invalid
@@ -280,25 +280,25 @@
             var result = startDate.toLocaleDateString();
             var array = result.split("/");
             array = array.map(Number);
-
-            if (Number(array[0]) < 10) {
-                if (Number(array[1]) < 10) {
+            console.log(array);
+            if (Number(array[1]) < 10) {
+                if (Number(array[0]) < 10) {
                     var endDate = array[2] + "-0" + array[0] + "-0" + array[1];
-                    document.getElementById('tanggalSelesai').value = endDate;
+                    document.getElementById('tanggalSelesai').value = "-0" + array[1] + "-0" + array[0] + array[2];
                     document.getElementById('tanggalSelesaiHidden').value = endDate;
                 } else {
                     var endDate = array[2] + "-0" + array[0] + "-" + array[1]
-                    document.getElementById('tanggalSelesai').value = endDate;
+                    document.getElementById('tanggalSelesai').value = "-0" + array[1] + "-" + array[0] + array[2];
                     document.getElementById('tanggalSelesaiHidden').value = endDate;
                 }
             } else {
-                if (Number(array[1]) < 10) {
+                if (Number(array[0]) < 10) {
                     var endDate = array[2] + "-" + array[0] + "-0" + array[1];
-                    document.getElementById('tanggalSelesai').value = endDate;
+                    document.getElementById('tanggalSelesai').value = array[1] + "-0" + array[0] + "-" + array[2];
                     document.getElementById('tanggalSelesaiHidden').value = endDate;
                 } else {
                     var endDate = array[2] + "-" + array[0] + "-" + array[1];
-                    document.getElementById('tanggalSelesai').value = endDate;
+                    document.getElementById('tanggalSelesai').value = array[1] + "-" + array[0] + "-" + array[2];
                     document.getElementById('tanggalSelesaiHidden').value = endDate;
                 }
             }
