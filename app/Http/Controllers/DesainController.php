@@ -53,7 +53,8 @@ class DesainController extends Controller
         );
 
         if ($validator->fails()) {
-            toast('Data yang anda masukan bermasalah', 'warning');
+            // toast('Data yang anda masukan bermasalah', 'warning');
+            Alert::warning('Data tidak valid, mohon masukan data yang valid!');
             return redirect()
                 ->back()
                 ->withErrors($validator)
