@@ -176,7 +176,8 @@
                 </tfoot>
             </table>
             <br><br>
-            Dicetak Oleh: {{ Auth::user()->nama_lengkap }}
+            Dicetak Oleh: {{ Auth::user()->nama_lengkap }} <br>
+            Tanggal : {{ date('d-m-Y') }}
         </div>
     @endforeach
 </body>

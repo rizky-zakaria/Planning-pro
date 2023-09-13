@@ -45,7 +45,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header justify-content-between">
-                            <h5 class="modal-title" id="tambahProyekLabel">Tambah Proyek</h5>
+                            <h5 class="modal-title" id="tambahProyekLabel">Tambah Pekerjaan</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -58,11 +58,12 @@
                                     <label for="namaInstansi">Nama Instansi:</label>
                                     <select name="instansi_id" id="namaInstansi" class="form-control">
                                         @foreach ($instansis as $instansi)
-                                            <option value="{{ $instansi->id }}">{{ $instansi->nama_instansi }}</option>
+                                            <option value="{{ $instansi->id }}" style="font-size: 11px">
+                                                {{ $instansi->nama_instansi }} ({{ $instansi->tujuan_proyek }})</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <label for="nama">Nama Proyek:</label>
+                                <label for="nama">Sub Pekerjaan:</label>
                                 <input type="text" class="form-control" name="nama_proyek" id="nama" required>
 
                                 <h5 class="font-weight-bold modal-title mt-4">Uraian Pekerjaan</h5>
@@ -99,7 +100,8 @@
                         <thead>
                             <tr>
                                 <th style="width: 20px">No</th>
-                                <th>Nama Proyek</th>
+                                <th>Instansi</th>
+                                <th>Sub Pekerjaan</th>
                                 <th>List Uraian Pekerjaan</th>
                                 <th style="width: 20px">Aksi</th>
                             </tr>
@@ -116,6 +118,7 @@
                             @foreach ($proyeks as $proyek)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $proyek->nama_instansi }}</td>
                                     <td>{{ $proyek->nama_proyek }}</td>
                                     <td>
                                         @foreach ($proyek->uraians as $uraian)

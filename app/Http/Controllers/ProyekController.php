@@ -19,8 +19,10 @@ class ProyekController extends Controller
         // $proyeks = Proyek::all();
         // $instansis = Instansi::all();
 
-        $proyeks = Proyek::all();
+        $proyeks = Proyek::join('instansis', 'proyeks.instansi_id', '=', 'instansis.id')
+            ->get(['proyeks.*', 'instansis.nama_instansi']);
         $instansis = Instansi::all();
+        // dd($instansis);
 
         $selectedInstansi = $request->input('instansi');
 

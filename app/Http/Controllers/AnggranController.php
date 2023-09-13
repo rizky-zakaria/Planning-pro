@@ -14,7 +14,10 @@ class AnggranController extends Controller
     public function index(Request $request)
     {
         // $rabs = Rab::all();
-        $uraians = Uraian::all();
+        $uraians = Uraian::join('proyeks', 'proyeks.id', '=', 'uraians.proyek_id')
+            ->join('instansis', 'instansis.id', '=', 'proyeks.instansi_id')
+            ->get(['uraians.*', 'proyeks.nama_proyek', 'instansis.nama_instansi']);
+        // dd($uraians);
 
         $proyeks = Proyek::all();
         $selectedProyek = $request->input('proyek');
@@ -27,6 +30,7 @@ class AnggranController extends Controller
                 $uraians = $proyek->uraians;
             }
         }
+
         return view('dashboard.admin.rab.index', compact('uraians', 'proyeks', 'selectedProyek'));
     }
 

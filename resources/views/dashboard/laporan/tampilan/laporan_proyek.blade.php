@@ -16,7 +16,8 @@
                         <h6>Filter Data</h6>
                         <form action="{{ route('laporan.proyek') }}" method="GET">
                             <select name="proyek" id="dataProyek" class="form-control col-md-3">
-                                <option value="all" {{ $selectedProyek == 'all' ? 'selected' : '' }}>Semua Proyek</option>
+                                <option value="all" {{ $selectedProyek == 'all' ? 'selected' : '' }}>Semua Proyek
+                                </option>
                                 @foreach ($proyeks as $proyek)
                                     <option value="{{ $proyek->id }}"
                                         {{ $selectedProyek == $proyek->id ? 'selected' : '' }}>
@@ -67,7 +68,7 @@
                                 @endphp
                                 <tr>
                                     <td rowspan="{{ $jumlahBaris }}">{{ $proyek->nama_proyek }}</td>
-                                    <td rowspan="{{ $jumlahBaris }}">Rp. {{ $jumlah }}</td>
+                                    <td rowspan="{{ $jumlahBaris }}">Rp. {{ number_format($jumlah, 2, ',', '.') }}</td>
                                     @foreach ($proyek->uraians as $uraian)
                                 <tr>
                                     <td>{{ $uraian->nama_uraian }}</td>
