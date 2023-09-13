@@ -95,7 +95,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        {{-- <tfoot>
                             <tr>
                                 <th>Intansi</th>
                                 <th>Pekerjaan</th>
@@ -105,7 +105,7 @@
                                 <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> --}}
                         <tbody>
                             @foreach ($durasis as $durasi)
                                 <tr>

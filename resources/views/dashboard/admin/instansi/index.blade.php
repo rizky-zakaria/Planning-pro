@@ -129,23 +129,23 @@
                                 <th>Nama Instansi</th>
                                 <th>Program Instansi</th>
                                 <th>Kegiatan Instansi</th>
-                                <th>Tujuan Proyek</th>
+                                <th>Pekerjaan</th>
                                 <th>Lokasi Instansi</th>
                                 <th>Tahun Anggaran</th>
                                 <th style="width: 20px">Aksi</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        {{-- <tfoot>
                             <tr>
                                 <th>Nama Instansi</th>
                                 <th>Program Instansi</th>
                                 <th>Kegiatan Instansi</th>
-                                <th>Tujuan Proyek</th>
+                                <th>Pekerjaan</th>
                                 <th>Lokasi Instansi</th>
                                 <th>Tahun Anggaran</th>
                                 <th>Aksi</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> --}}
                         <tbody>
                             @foreach ($instansis as $instansi)
                                 <tr>

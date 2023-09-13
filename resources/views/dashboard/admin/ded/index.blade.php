@@ -90,14 +90,14 @@
                                 <th style="width: 20px">Aksi</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        {{-- <tfoot>
                             <tr>
                                 <th>Nama Instansi</th>
                                 <th>Nama Proyek</th>
                                 <th>Gambar Desain</th>
                                 <th>Aksi</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> --}}
                         <tbody>
                             @foreach ($proyeks as $proyek)
                                 @php
