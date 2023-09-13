@@ -34,7 +34,7 @@
                             @method('POST')
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="tujuanProyek">Tujuan Proyek:</label>
+                                    <label for="tujuanProyek">Pekerjaan:</label>
                                     <select name="instansi" id="tujuanProyek" class="form-control" required>
                                         @foreach ($instansis as $instansi)
                                             <option value="{{ $instansi->id }}">{{ $instansi->tujuan_proyek }}</option>
@@ -43,18 +43,14 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="waktuPelaksanaan">Waktu Penyelesaian (Hari):</label>
-                                    <input type="number" class="form-control" name="lama_pengerjaan"
-                                        placeholder="masukan angka" id="waktuPelaksanaan" required>
+                                    <input type="number"
+                                        class="form-control @error('lama_pengerjaan')
+                                        is-invalid
+                                    @enderror"
+                                        name="lama_pengerjaan" placeholder="masukan angka" id="waktuPelaksanaan"
+                                        onclick="autoJumlahHari()" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="tanggalMulai">Tanggal Mulai:</label>
-                                    <input type="date" class="form-control" name="tanggal_mulai" id="tanggalMulai"
-                                        required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tanggalSelesai">Tanggal Selesai:</label>
-                                    <input type="date" class="form-control" name="tanggal_selesai" id="tanggalSelesai"
-                                        required>
+                                <div class="tgl_mulai" id="#tgl_mulai">
                                 </div>
                                 <div class="mb-3">
                                     <label for="dokumenSpmk">Dokumen Surat Perintah Mulai Kerja (SPMK):</label>
@@ -145,7 +141,7 @@
                                                     @method('PUT')
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label for="tujuanProyek">Tujuan Proyek:</label>
+                                                            <label for="tujuanProyek">Pekerjaan:</label>
                                                             <select name="instansi" id="tujuanProyek"
                                                                 class="form-control" required>
                                                                 <option value="{{ $durasi->instansi_id }}">
@@ -243,3 +239,77 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        function autoJumlahHari() {
+            deleteForm();
+            $(".tgl_mulai").append(`
+             <div class="mb-3" id="col-tgl-start">
+                <label for="tanggalMulai">Tanggal Mulai:</label>
+                <input type="date" class="form-control @error('tanggal_mulai')
+                                        is-invalid
+                                    @enderror" name="tanggal_mulai" id="tanggalMulai"
+                    onchange="autoEndDate()" required>
+                    @error('tanggal_mulai')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+            </div>
+            <div class="mb-3" id="col-tgl-end">
+                <label for="tanggalSelesai">Tanggal Selesai:</label>
+                <input type="date" class="form-control"
+                    id="tanggalSelesai" disabled required>
+                <input type="hidden" class="form-control @error('tanggal_selesai')
+                                        is-invalid
+                                    @enderror" name="tanggal_selesai"
+                id="tanggalSelesaiHidden" required>
+                @error('tanggal_selesai')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+            </div>
+            `);
+        }
+
+        function autoEndDate() {
+            var tglMulai = document.getElementById('tanggalMulai');
+            var waktuPelaksanaan = document.getElementById('waktuPelaksanaan');
+            var startDate = new Date(tglMulai.value);
+            var date = startDate.getDate();
+            var dateInTwentyDays = date + Number(waktuPelaksanaan.value);
+            startDate.setDate(dateInTwentyDays);
+            var result = startDate.toLocaleDateString();
+            var array = result.split("/");
+            array = array.map(Number);
+
+            if (Number(array[0]) < 10) {
+                if (Number(array[1]) < 10) {
+                    var endDate = array[2] + "-0" + array[0] + "-0" + array[1];
+                    document.getElementById('tanggalSelesai').value = endDate;
+                    document.getElementById('tanggalSelesaiHidden').value = endDate;
+                } else {
+                    var endDate = array[2] + "-0" + array[0] + "-" + array[1]
+                    document.getElementById('tanggalSelesai').value = endDate;
+                    document.getElementById('tanggalSelesaiHidden').value = endDate;
+                }
+            } else {
+                if (Number(array[1]) < 10) {
+                    var endDate = array[2] + "-" + array[0] + "-0" + array[1];
+                    document.getElementById('tanggalSelesai').value = endDate;
+                    document.getElementById('tanggalSelesaiHidden').value = endDate;
+                } else {
+                    var endDate = array[2] + "-" + array[0] + "-" + array[1];
+                    document.getElementById('tanggalSelesai').value = endDate;
+                    document.getElementById('tanggalSelesaiHidden').value = endDate;
+                }
+            }
+
+            var hasil = endDate;
+            // document.getElementById('tanggalSelesai').value = hasil;
+        }
+
+        function deleteForm() {
+            $("#col-tgl-start").remove();
+            $("#col-tgl-end").remove();
+        }
+    </script>
+@endpush
