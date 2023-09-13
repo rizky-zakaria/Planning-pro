@@ -231,7 +231,7 @@
                                                             @enderror
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="tujuanProyek required">Tujuan Proyek:</label>
+                                                            <label for="tujuanProyek required">Pekerjaan:</label>
                                                             <input type="text"
                                                                 class="form-control @error('tujuan_proyek')
                                                                 is-invalid
