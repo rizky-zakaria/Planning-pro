@@ -60,7 +60,7 @@
                                             <option value="{{ $uraian->id }}">
                                                 {{ $uraian->nama_uraian .
                                                     " (Proyek
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        " .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        " .
                                                     $uraian->proyek->nama_proyek .
                                                     ' )' }}
                                             </option>
@@ -137,8 +137,8 @@
                                 @endphp
                                 <tr>
                                     <td rowspan="{{ $jumlahBaris }}">{{ $loop->iteration }}</td>
-                                    <td rowspan="{{ $jumlahBaris }}">{{ $uraian->nama_instansi }}</td>
-                                    <td rowspan="{{ $jumlahBaris }}">{{ $uraian->nama_proyek }}</td>
+                                    <td rowspan="{{ $jumlahBaris }}">{{ $uraian->proyek->instansi->nama_instansi }}</td>
+                                    <td rowspan="{{ $jumlahBaris }}">{{ $uraian->proyek->nama_proyek }}</td>
                                     <td rowspan="{{ $jumlahBaris }}">{{ $uraian->nama_uraian }}</td>
                                     @forelse ($uraian->rabs as $anggaran)
                                 <tr>
