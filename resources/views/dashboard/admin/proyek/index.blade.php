@@ -118,7 +118,7 @@
                             @foreach ($proyeks as $proyek)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $proyek->nama_instansi }}</td>
+                                    <td>{{ $proyek->instansi->nama_instansi }}</td>
                                     <td>{{ $proyek->nama_proyek }}</td>
                                     <td>
                                         @foreach ($proyek->uraians as $uraian)

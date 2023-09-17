@@ -16,19 +16,17 @@ class ProyekController extends Controller
 {
     public function index(Request $request)
     {
-        // $proyeks = Proyek::all();
+        $proyeks = Proyek::all();
         // $instansis = Instansi::all();
-
-        $proyeks = Proyek::join('instansis', 'proyeks.instansi_id', '=', 'instansis.id')
-            ->get(['proyeks.*', 'instansis.nama_instansi']);
+        // $proyeks = Proyek::join('instansis', 'proyeks.instansi_id', '=', 'instansis.id')
+        //     ->get(['proyeks.*', 'instansis.nama_instansi']);
         $instansis = Instansi::all();
-        // dd($instansis);
 
         $selectedInstansi = $request->input('instansi');
 
-        // Lakukan logika filtering sesuai dengan nilai $selectedProyek
         if ($selectedInstansi && $selectedInstansi !== 'all') {
-            $instansis = Instansi::where('id', $selectedInstansi)->get();
+            $instansis = Instansi::where('instansis.id', $selectedInstansi)
+                ->get();
             $proyeks = [];
             foreach ($instansis as $instansi) {
                 $proyeks = $instansi->proyeks;
